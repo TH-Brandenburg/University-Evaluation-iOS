@@ -1,0 +1,6 @@
+framework module Pods_EdL {
+  umbrella header "Pods-EdL-umbrella.h"
+
+  export *
+  module * { export * }
+}
