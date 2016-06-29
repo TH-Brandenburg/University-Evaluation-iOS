@@ -8,13 +8,20 @@
 
 import UIKit
 
-class Colors {
+struct Colors {
     
     static var grades: [UIColor] = [UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1),
-        UIColor(red: 0, green: 198/255, blue: 101/255, alpha: 1),
-        UIColor(red: 16/255, green: 150/255, blue: 10/255, alpha: 1),
-        UIColor(red: 231/255, green: 238/255, blue: 22/255, alpha: 1),
-        UIColor(red: 238/255, green: 152/255, blue: 22/255, alpha: 1),
-        UIColor(red: 238/255, green: 57/255, blue: 22/255, alpha: 1)]
+        UIColor(red: 0x3B/255, green: 0xA2/255, blue: 0x4F/255, alpha: 1),
+        UIColor(red: 0x92/255, green: 0xDD/255, blue: 0x85/255, alpha: 1),
+        UIColor(red: 0xEB/255, green: 0xD9/255, blue: 0x50/255, alpha: 1),
+        UIColor(red: 0xD8/255, green: 0x97/255, blue: 0x40/255, alpha: 1),
+        UIColor(red: 0xD1/255, green: 0x79/255, blue: 0x65/255, alpha: 1)]
+    
+    static var gradesLight: [UIColor] = [UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.2),
+        UIColor(red: 0x3B/255, green: 0xA2/255, blue: 0x4F/255, alpha: 0.2),
+        UIColor(red: 0x92/255, green: 0xDD/255, blue: 0x85/255, alpha: 0.2),
+        UIColor(red: 0xEB/255, green: 0xD9/255, blue: 0x50/255, alpha: 0.2),
+        UIColor(red: 0xD8/255, green: 0x97/255, blue: 0x40/255, alpha: 0.2),
+        UIColor(red: 0xD1/255, green: 0x79/255, blue: 0x65/255, alpha: 0.2)]
     
 }
