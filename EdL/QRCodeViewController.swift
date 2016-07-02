@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import SwiftyJSON
 
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
@@ -127,10 +128,29 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "afterScan") {
+            let jsonStringData = messageLabel.text
             //Checking identifier is crucial as there might be multiple
             // segues attached to same view
             let detailVC = segue.destinationViewController as! SecondViewController;
-            detailVC.toPass = messageLabel.text
+            
+            //Convert String to NSString
+            let jsonNSStringData = jsonStringData as NSString!
+            
+            //Convert NSString to NSData
+            let data = jsonNSStringData.dataUsingEncoding(NSUTF8StringEncoding)!
+            
+            // Validating JSON
+            let json = JSON(data: data)
+            if let host = json["host"].string {
+                //Test
+            }
+            if let voteToken = json["voteToken"].string {
+                //Test
+            }
+            
+            
+            detailVC.toPass = jsonStringData
+            
         }
     }
     

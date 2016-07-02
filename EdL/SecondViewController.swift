@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SecondViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var messageLabel: UILabel!
@@ -20,7 +21,21 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
-        print(toPass)
+        let jsonStringData = toPass
+        //Convert String to NSString
+        let jsonNSStringData = jsonStringData as NSString!
+        
+        //Convert NSString to NSData
+        let data = jsonNSStringData.dataUsingEncoding(NSUTF8StringEncoding)!
+        
+        // Validating JSON
+        let json = JSON(data: data)
+        if let host = json["host"].string {
+            print(host)
+        }
+        if let voteToken = json["voteToken"].string {
+            print(voteToken)
+        }
         
     }
 
