@@ -17,6 +17,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var qrCodeFrameView: UIView?
     
     @IBOutlet weak var messageLabel:UILabel!
+    @IBOutlet weak var blurEffectView: UIVisualEffectView!
     
     // Locking view to Portrait-Mode
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -26,21 +27,23 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     //MARK:- CAMERA ACCESS CHECK
     func cameraAllowsAccessToApplicationCheck()
     {
+        captureSession?.startRunning()
+        messageLabel.text = ""
         let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         switch authorizationStatus {
         case .NotDetermined:
             // permission dialog not yet presented, request authorization
-            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo,
-                                                      completionHandler: { (granted:Bool) -> Void in
-                                                        if granted {
-                                                            print("access granted")
-                                                        }
-                                                        else {
-                                                            print("access denied")
-                                                            let alertView = UIAlertController(title: "Kein Kamerazugriff möglich", message: "Bitte lassen Sie den Kamerazugriff in den Einstellungen zu. Dieser wird benötigt, um den QR-Code einzulesen", preferredStyle: .Alert)
-                                                            alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-                                                            self.presentViewController(alertView, animated: true, completion: nil)
-                                                        }
+            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler:
+                { (granted:Bool) -> Void in
+                    if granted {
+                        print("access granted")
+                    }
+                    else {
+                        print("access denied")
+                        let alertView = UIAlertController(title: "Kein Kamerazugriff möglich", message: "Bitte lassen Sie den Kamerazugriff in den Einstellungen zu. Dieser wird benötigt, um den QR-Code einzulesen", preferredStyle: .Alert)
+                        alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                        self.presentViewController(alertView, animated: true, completion: nil)
+                    }
             })
         case .Authorized:
             print("Access authorized")
@@ -62,7 +65,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         do {
             let input: AnyObject! = try AVCaptureDeviceInput(device: captureDevice)
             
-            
+            messageLabel.backgroundColor = UIColor.clearColor()
             // Initialize the captureSession object.
             captureSession = AVCaptureSession()
             // Set the input device on the capture session.
@@ -86,7 +89,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             captureSession?.startRunning()
             
             // Move the message label to the top view
+            view.bringSubviewToFront(blurEffectView)
             view.bringSubviewToFront(messageLabel)
+            
         } catch let error as NSError{
             // If any error occurs, simply log the description of it and don't continue any more.
             print("\(error.localizedDescription)")
@@ -106,6 +111,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRectZero
+            messageLabel.textColor = UIColor.whiteColor()
             messageLabel.text = "Kein QR-Code erkannt"
             return
         }
@@ -121,18 +127,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             if metadataObj.stringValue != nil {
                 messageLabel.text = metadataObj.stringValue
             }
-            performSegueWithIdentifier("afterScan", sender: nil)
-        }
-        captureSession?.stopRunning()
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (segue.identifier == "afterScan") {
-            let jsonStringData = messageLabel.text
-            //Checking identifier is crucial as there might be multiple
-            // segues attached to same view
-            let detailVC = segue.destinationViewController as! SecondViewController;
-            
+            let jsonStringData = metadataObj.stringValue
             //Convert String to NSString
             let jsonNSStringData = jsonStringData as NSString!
             
@@ -141,15 +136,34 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             
             // Validating JSON
             let json = JSON(data: data)
-            if let host = json["host"].string {
-                //Test
+            var hostBool:Bool = false
+            var voteTokenBool:Bool = false
+            
+            if json["host"].string != nil {
+                hostBool = true
             }
-            if let voteToken = json["voteToken"].string {
-                //Test
+            if json["voteToken"].string != nil {
+                voteTokenBool = true
             }
             
+            if (voteTokenBool && hostBool){
+                performSegueWithIdentifier("afterScan", sender: nil)
+                qrCodeFrameView?.frame = CGRectZero
+                captureSession?.stopRunning()
+            } else {
+                messageLabel.text = "Kein valider QR-Code"
+                messageLabel.textColor = UIColor.whiteColor()
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "afterScan") {
+            //Checking identifier is crucial as there might be multiple
+            // segues attached to same view
+            let detailVC = segue.destinationViewController as! SecondViewController;
             
-            detailVC.toPass = jsonStringData
+            detailVC.toPass = messageLabel.text
             
         }
     }

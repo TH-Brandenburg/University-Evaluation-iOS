@@ -96,16 +96,29 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJx-6S-6i9">
+                                <rect key="frame" x="0.0" y="560" width="600" height="40"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Xzw-8x-vlm">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Sir-Ff-ara" firstAttribute="bottom" secondItem="tvm-97-KyJ" secondAttribute="top" id="3su-PZ-6fI"/>
                             <constraint firstAttribute="trailing" secondItem="Sir-Ff-ara" secondAttribute="trailing" id="Q6J-ik-QZv"/>
                             <constraint firstItem="Sir-Ff-ara" firstAttribute="leading" secondItem="PQt-QW-bYJ" secondAttribute="leading" id="W9b-uc-lcg"/>
+                            <constraint firstItem="gJx-6S-6i9" firstAttribute="top" secondItem="Sir-Ff-ara" secondAttribute="top" id="c0x-or-Eg2"/>
+                            <constraint firstItem="gJx-6S-6i9" firstAttribute="bottom" secondItem="tvm-97-KyJ" secondAttribute="top" id="fMK-aA-Wjz"/>
+                            <constraint firstItem="gJx-6S-6i9" firstAttribute="leading" secondItem="Sir-Ff-ara" secondAttribute="leading" id="fey-LX-hlL"/>
+                            <constraint firstItem="gJx-6S-6i9" firstAttribute="trailing" secondItem="Sir-Ff-ara" secondAttribute="trailing" id="uy7-xm-6Kh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="QR-Code scannen" id="h28-6t-Qfs"/>
                     <connections>
+                        <outlet property="blurEffectView" destination="gJx-6S-6i9" id="M3j-cW-tMW"/>
                         <outlet property="messageLabel" destination="Sir-Ff-ara" id="tYg-fE-t8d"/>
                         <segue destination="avu-mO-2EO" kind="show" identifier="afterScan" id="96w-2H-UbK"/>
                     </connections>
