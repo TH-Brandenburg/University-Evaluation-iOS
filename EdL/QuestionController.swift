@@ -8,9 +8,10 @@
 
 import UIKit
 import SwiftyJSON
+import AKPickerView_Swift
 
 /// This class controls the PageViewController and creates ViewControllers for each question
-class QuestionController: NSObject, UIPageViewControllerDataSource {
+class QuestionController: NSObject, UIPageViewControllerDataSource, AKPickerViewDataSource {
 
     var questions: QuestionsDTO
     var answers: AnswersDTO
@@ -27,7 +28,7 @@ class QuestionController: NSObject, UIPageViewControllerDataSource {
     }
     
     func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> UIViewController? {
-        // Return the data view controller for the given index.       
+        // Return the data view controller for the given index.
         // Create a new view controller and pass suitable data.
         
         if questions.textQuestionsFirst{
@@ -102,5 +103,17 @@ class QuestionController: NSObject, UIPageViewControllerDataSource {
         }
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
     }
+    
+    // MARK: - AKPickerViewDataSource
+    
+    func numberOfItemsInPickerView(pickerView: AKPickerView) -> Int {
+        return self.questions.multipleChoiceQuestions.count + self.questions.textQuestions.count
+    }
+    
+    func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
+        return String(item)
+    }
+    
+    
     
 }
