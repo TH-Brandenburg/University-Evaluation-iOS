@@ -57,6 +57,7 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageV
         self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 20)!
         self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue", size: 20)!
         self.pickerView.pickerViewStyle = .Flat
+        self.pickerView.interitemSpacing = 0.5
         self.pickerView.maskDisabled = true
         self.pickerView.reloadData()
         let border = CALayer()
