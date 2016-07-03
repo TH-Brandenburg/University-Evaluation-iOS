@@ -11,6 +11,9 @@ import SwiftyJSON
 
 class RootViewController: UIViewController, UIPageViewControllerDelegate {
 
+    
+    @IBOutlet weak var pageViewControllerContainer: UIView!
+    
     var pageViewController: UIPageViewController?
     
     var questions: QuestionsDTO!
@@ -42,27 +45,6 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // Configure the page view controller and add it as a child view controller.
-        self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.pageViewController!.delegate = self
-
-        let startingViewController: UIViewController = self.modelController.viewControllerAtIndex(0, storyboard: UIStoryboard(name: "Questions", bundle: nil))!
-        let viewControllers = [startingViewController]
-        self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
-
-        self.pageViewController!.dataSource = self.modelController
-
-        self.addChildViewController(self.pageViewController!)
-        self.view.addSubview(self.pageViewController!.view)
-
-        // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
-        var pageViewRect = self.view.bounds
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            pageViewRect = CGRectInset(pageViewRect, 40.0, 40.0)
-        }
-        self.pageViewController!.view.frame = pageViewRect
-
-        self.pageViewController!.didMoveToParentViewController(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,17 +62,29 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
     }
 
     var _modelController: QuestionController? = nil
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "embedQuestionPageViewController"{
+            let embedVC = segue.destinationViewController as! QuestionPageViewController
+            embedVC.delegate = self
+            embedVC.dataSource = self.modelController
+            let startingViewController: UIViewController = self.modelController.viewControllerAtIndex(0, storyboard: UIStoryboard(name: "Questions", bundle: nil))!
+            let viewControllers = [startingViewController]
+            embedVC.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
+        }
+    }
 
     // MARK: - UIPageViewController delegate methods
 
     func pageViewController(pageViewController: UIPageViewController, spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
         if (orientation == .Portrait) || (orientation == .PortraitUpsideDown) || (UIDevice.currentDevice().userInterfaceIdiom == .Phone) {
             // In portrait orientation or on iPhone: Set the spine position to "min" and the page view controller's view controllers array to contain just one view controller. Setting the spine position to 'UIPageViewControllerSpineLocationMid' in landscape orientation sets the doubleSided property to true, so set it to false here.
-            let currentViewController = self.pageViewController!.viewControllers![0]
+            let currentViewController = pageViewController.viewControllers![0]
             let viewControllers = [currentViewController]
-            self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: {done in })
+            pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: {done in })
 
-            self.pageViewController!.doubleSided = false
+            pageViewController.doubleSided = false
             return .Min
         }
         return .Min

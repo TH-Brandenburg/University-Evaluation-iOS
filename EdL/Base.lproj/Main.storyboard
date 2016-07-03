@@ -17,8 +17,25 @@
                     <view key="view" contentMode="scaleToFill" id="502-Ir-ELC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7GT-q4-ZrQ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="486"/>
+                                <connections>
+                                    <segue destination="7ix-Ap-hEI" kind="embed" identifier="embedQuestionPageViewController" id="A6N-Ic-eYz"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" red="0.75686274509803919" green="0.10980392156862745" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="7GT-q4-ZrQ" firstAttribute="top" secondItem="I7W-xW-C47" secondAttribute="bottom" id="BYh-v4-crs"/>
+                            <constraint firstItem="IfR-02-kHw" firstAttribute="top" secondItem="7GT-q4-ZrQ" secondAttribute="bottom" constant="50" id="Bg1-sd-3sl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7GT-q4-ZrQ" secondAttribute="trailing" constant="-20" id="Ygg-le-xYb"/>
+                            <constraint firstItem="7GT-q4-ZrQ" firstAttribute="leading" secondItem="502-Ir-ELC" secondAttribute="leadingMargin" constant="-20" id="xBw-9E-tUe"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pageViewControllerContainer" destination="7GT-q4-ZrQ" id="62v-gY-eEB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3h-pU-vEd" sceneMemberID="firstResponder"/>
             </objects>
@@ -155,6 +172,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3r1-Os-Klm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2102" y="-243"/>
+        </scene>
+        <!--Question Page View Controller-->
+        <scene sceneID="040-45-8br">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="7ix-Ap-hEI" customClass="QuestionPageViewController" customModule="EdL" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0fA-29-zVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2102" y="418"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ROX-Q0-Q4o">
