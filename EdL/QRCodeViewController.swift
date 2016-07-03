@@ -28,7 +28,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     func cameraAllowsAccessToApplicationCheck()
     {
         captureSession?.startRunning()
-        messageLabel.text = ""
+        messageLabel.text = "Bitte QR-Code scannen"
         let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         switch authorizationStatus {
         case .NotDetermined:
@@ -111,7 +111,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRectZero
-            messageLabel.textColor = UIColor.whiteColor()
+            messageLabel.backgroundColor = UIColor.clearColor()
             messageLabel.text = "Kein QR-Code erkannt"
             return
         }
@@ -152,7 +152,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 captureSession?.stopRunning()
             } else {
                 messageLabel.text = "Kein valider QR-Code"
-                messageLabel.textColor = UIColor.whiteColor()
+                let redAlpha = UIColor.redColor()
+                messageLabel.backgroundColor = redAlpha.colorWithAlphaComponent(0.3)
             }
         }
     }
