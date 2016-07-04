@@ -69,8 +69,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         if(segue.identifier == "afterReq") {
             
             // Create a new variable to store the instance of PlayerTableViewController
-            let destinationVC = segue.destinationViewController as! QuestionViewController
-            destinationVC.toPass = self.responseObj
+            //let destinationVC = segue.destinationViewController as! QuestionViewController
+            //destinationVC.toPass = self.responseObj
         }
     }
 }

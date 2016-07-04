@@ -185,44 +185,11 @@
                     </view>
                     <connections>
                         <outlet property="messageLabel" destination="L3o-U9-WDf" id="JJ5-bJ-YUJ"/>
-                        <segue destination="SmU-zx-jVK" kind="show" identifier="afterRequest" id="eWO-pE-gMi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3r1-Os-Klm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2102" y="-243"/>
-        </scene>
-        <!--Question View Controller-->
-        <scene sceneID="HQw-0k-gt2">
-            <objects>
-                <viewController id="SmU-zx-jVK" customClass="QuestionViewController" customModule="EdL" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5dS-d8-lWt"/>
-                        <viewControllerLayoutGuide type="bottom" id="YqJ-VY-kkC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4Ga-3G-88R">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khb-gx-XxS">
-                                <rect key="frame" x="50" y="289" width="33" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTK-h6-gQ0">
-                                <rect key="frame" x="279" y="291" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6W3-eZ-HqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2862" y="-243"/>
         </scene>
         <!--Question Page View Controller-->
         <scene sceneID="040-45-8br">
