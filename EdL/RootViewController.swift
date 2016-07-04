@@ -8,16 +8,25 @@
 
 import UIKit
 import SwiftyJSON
+import AKPickerView_Swift
 
-class RootViewController: UIViewController, UIPageViewControllerDelegate {
+class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDelegate, AKPickerViewDelegate {
 
-    var pageViewController: UIPageViewController?
+    
+    @IBOutlet weak var pageViewControllerContainer: UIView!
+    @IBOutlet weak var pickerView: AKPickerView!
     
     var questions: QuestionsDTO!
     var answers: AnswersDTO!
     
+    var previousIndex: Int = 0
+    
+    var questionPageViewController: QuestionPageViewController!
+    
     override func loadView() {
         super.loadView()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         //Load json with test data from file
         let path = NSBundle.mainBundle().pathForResource("response.json", ofType: nil)
@@ -42,27 +51,23 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // Configure the page view controller and add it as a child view controller.
-        self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.pageViewController!.delegate = self
-
-        let startingViewController: UIViewController = self.modelController.viewControllerAtIndex(0, storyboard: UIStoryboard(name: "Questions", bundle: nil))!
-        let viewControllers = [startingViewController]
-        self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
-
-        self.pageViewController!.dataSource = self.modelController
-
-        self.addChildViewController(self.pageViewController!)
-        self.view.addSubview(self.pageViewController!.view)
-
-        // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
-        var pageViewRect = self.view.bounds
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            pageViewRect = CGRectInset(pageViewRect, 40.0, 40.0)
-        }
-        self.pageViewController!.view.frame = pageViewRect
-
-        self.pageViewController!.didMoveToParentViewController(self)
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self.modelController
+        
+        self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 20)!
+        self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue", size: 20)!
+        self.pickerView.pickerViewStyle = .Flat
+        self.pickerView.interitemSpacing = 0.5
+        self.pickerView.maskDisabled = true
+        self.pickerView.reloadData()
+        let border = CALayer()
+        let width = CGFloat(0.5)
+        border.borderColor = UIColor.lightGrayColor().CGColor
+        border.frame = CGRect(x: 0, y: 0, width:  pickerView.frame.size.width, height: pickerView.frame.size.height)
+        
+        border.borderWidth = width
+        pickerView.layer.addSublayer(border)
+        pickerView.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,37 +85,68 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
     }
 
     var _modelController: QuestionController? = nil
-
-    // MARK: - UIPageViewController delegate methods
-
-    func pageViewController(pageViewController: UIPageViewController, spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
-        if (orientation == .Portrait) || (orientation == .PortraitUpsideDown) || (UIDevice.currentDevice().userInterfaceIdiom == .Phone) {
-            // In portrait orientation or on iPhone: Set the spine position to "min" and the page view controller's view controllers array to contain just one view controller. Setting the spine position to 'UIPageViewControllerSpineLocationMid' in landscape orientation sets the doubleSided property to true, so set it to false here.
-            let currentViewController = self.pageViewController!.viewControllers![0]
-            let viewControllers = [currentViewController]
-            self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: {done in })
-
-            self.pageViewController!.doubleSided = false
-            return .Min
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "embedQuestionPageViewController"{
+            let embedVC = segue.destinationViewController as! QuestionPageViewController
+            embedVC.delegate = self
+            embedVC.dataSource = self.modelController
+            let startingViewController: UIViewController = self.modelController.viewControllerAtIndex(0, storyboard: UIStoryboard(name: "Questions", bundle: nil))!
+            let viewControllers = [startingViewController]
+            embedVC.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
+            self.questionPageViewController = embedVC
         }
-        return .Min
-
-        // In landscape orientation: Set set the spine location to "mid" and the page view controller's view controllers array to contain two view controllers. If the current page is even, set it to contain the current and next view controllers; if it is odd, set the array to contain the previous and current view controllers.
-        /*let currentViewController = self.pageViewController!.viewControllers![0] as! DataViewController
-        var viewControllers: [UIViewController]
-
-        let indexOfCurrentViewController = self.modelController.indexOfViewController(currentViewController)
-        if (indexOfCurrentViewController == 0) || (indexOfCurrentViewController % 2 == 0) {
-            let nextViewController = self.modelController.pageViewController(self.pageViewController!, viewControllerAfterViewController: currentViewController)
-            viewControllers = [currentViewController, nextViewController!]
-        } else {
-            let previousViewController = self.modelController.pageViewController(self.pageViewController!, viewControllerBeforeViewController: currentViewController)
-            viewControllers = [previousViewController!, currentViewController]
-        }
-        self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: {done in })
-
-        return .Mid*/
     }
+    
+    // MARK: - AKPicker
+    func pickerView(pickerView: AKPickerView, configureLabel label: UILabel, forItem item: Int) {
+        label.textColor = UIColor.darkGrayColor()
+        label.highlightedTextColor = UIColor.whiteColor()
+        label.backgroundColor = UIColor.lightGrayColor()
+    }
+    
+    func pickerView(pickerView: AKPickerView, marginForItem item: Int) -> CGSize {
+        return CGSizeMake(30, 20)
+    }
+    
+    func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
+        if item != previousIndex{
+            let nextViewController = self.modelController.viewControllerAtIndex(item, storyboard: UIStoryboard(name: "Questions", bundle: nil))!
+            let viewControllers = [nextViewController]
+            self.questionPageViewController.setViewControllers(viewControllers, direction: item < previousIndex ? .Reverse : .Forward, animated: true, completion: {done in })
+            previousIndex = item
+        }
+        
+    }
+    
+    func updateViewPicker(index: Int) {
+        if previousIndex != index {
+            self.previousIndex = index
+            self.pickerView.selectItem(index, animated: true)
+
+        }
+    }
+    
+    // MARK: - PageViewController Delegate
+    
+    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+        let pendingIndex = self.modelController.getIndex(pendingViewControllers[0])
+        self.updateViewPicker(pendingIndex)
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let index = self.modelController.getIndex(pageViewController.viewControllers![0])
+        self.updateViewPicker(index)
+    }
+    
+    // MARK: - Navigation
+    
+    // Disable Back gesture
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
     
 
 }

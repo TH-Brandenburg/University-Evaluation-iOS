@@ -8,5 +8,6 @@ target 'EdL' do
   # Pods for EdL
   pod 'Alamofire', '~> 3.4'
   pod 'SwiftyJSON', '~> 2.3'
+  pod 'AKPickerView-Swift', '~> 1.0'
 
 end

@@ -22,6 +22,7 @@
 		8A80C52D1D17014B00D42FFC /* TextAnswerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C52C1D17014B00D42FFC /* TextAnswerDTO.swift */; };
 		8A80C52F1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */; };
 		8A80C5311D172D0000D42FFC /* TextQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */; };
+		8A95E6DF1D29414700D6F83F /* QuestionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */; };
 		8AE214BD1D158DFB003613EE /* response.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AE214BC1D158DFB003613EE /* response.json */; };
 		8AE475091D15757B00BB6100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE475081D15757B00BB6100 /* AppDelegate.swift */; };
 		8AE4750B1D15757B00BB6100 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE4750A1D15757B00BB6100 /* RootViewController.swift */; };
@@ -47,6 +48,7 @@
 		8A80C52C1D17014B00D42FFC /* TextAnswerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnswerDTO.swift; sourceTree = "<group>"; };
 		8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleCoiceAnswerDTO.swift; sourceTree = "<group>"; };
 		8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextQuestionViewController.swift; sourceTree = "<group>"; };
+		8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPageViewController.swift; sourceTree = "<group>"; };
 		8AE214BC1D158DFB003613EE /* response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response.json; sourceTree = "<group>"; };
 		8AE475051D15757B00BB6100 /* EdL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EdL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE475081D15757B00BB6100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				8AE4750A1D15757B00BB6100 /* RootViewController.swift */,
 				8A1609371D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift */,
 				8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */,
+				8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				TargetAttributes = {
 					8AE475041D15757B00BB6100 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = JQUGCHTGY9;
 					};
 				};
 			};
@@ -294,6 +298,7 @@
 				8A80C52D1D17014B00D42FFC /* TextAnswerDTO.swift in Sources */,
 				8A80C5251D16FD9E00D42FFC /* TextQuestionDTO.swift in Sources */,
 				8A74D20D1D18804800E2D380 /* QRCodeViewController.swift in Sources */,
+				8A95E6DF1D29414700D6F83F /* QuestionPageViewController.swift in Sources */,
 				8AE475091D15757B00BB6100 /* AppDelegate.swift in Sources */,
 				8A80C5291D16FFA200D42FFC /* ChoiceDTO.swift in Sources */,
 				8AFF40131D17E1CE005E3BA5 /* Helper.swift in Sources */,
@@ -414,10 +419,13 @@
 			baseConfigurationReference = 33AEC29CB8E434DAEA7715B5 /* Pods-EdL.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EdL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.thb.EdL;
+				PRODUCT_BUNDLE_IDENTIFIER = de.thb.EdLdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -426,10 +434,13 @@
 			baseConfigurationReference = D20821B11C92675F1EBE489F /* Pods-EdL.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EdL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.thb.EdL;
+				PRODUCT_BUNDLE_IDENTIFIER = de.thb.EdLdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
