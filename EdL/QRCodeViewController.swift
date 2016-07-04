@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import SwiftyJSON
+import Alamofire
 
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
@@ -15,6 +16,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
+    var responseData: JSON!
+    var host: String = ""
+    var voteToken: String = ""
     
     @IBOutlet weak var messageLabel:UILabel!
     @IBOutlet weak var blurEffectView: UIVisualEffectView!
@@ -138,6 +142,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             let json = JSON(data: data)
             var hostBool:Bool = false
             var voteTokenBool:Bool = false
+            host = json["host"].string!
+            voteToken = json["voteToken"].string!
             
             if json["host"].string != nil {
                 hostBool = true
@@ -146,8 +152,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 voteTokenBool = true
             }
             
+            //print(host)
             if (voteTokenBool && hostBool){
-                performSegueWithIdentifier("afterScan", sender: nil)
+                sendRequest(host, voteToken: voteToken)
                 qrCodeFrameView?.frame = CGRectZero
                 captureSession?.stopRunning()
             } else {
@@ -160,15 +167,16 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "afterScan") {
+            
             //Checking identifier is crucial as there might be multiple
             // segues attached to same view
-            let detailVC = segue.destinationViewController as! SecondViewController;
+            //print(self.responseObj)
+            let detailVC = segue.destinationViewController as! RootViewController;
             
-            detailVC.toPass = messageLabel.text
+            detailVC.questionData = self.responseData
             
         }
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -177,5 +185,33 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewWillAppear(animated: Bool) {
         cameraAllowsAccessToApplicationCheck()
     }
+    
+    func sendRequest(host:String, voteToken:String) {
+        let request = NSMutableURLRequest(URL: NSURL(string: host + "/v1/questions")!)
+        request.HTTPMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonBody = ["voteToken": voteToken, "host": host, "deviceID": 1234]
+        
+        print(jsonBody)
+        
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
+        
+        Alamofire.request(request)
+            .responseJSON { response in
+                // do whatever you want here
+                switch response.result {
+                case .Failure(let error):
+                    print(error)
+                case .Success:
+                    //print(responseObject)
+                    if let value = response.result.value{
+                        self.responseData = JSON(value)
+                        print("responseData: \(self.responseData)")
+                        self.performSegueWithIdentifier("afterScan", sender: nil)
+                    }
+                }
+                
+        }
+    }
 }
-

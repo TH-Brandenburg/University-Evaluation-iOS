@@ -13,7 +13,6 @@
 		8A1609381D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1609371D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift */; };
 		8A179B741D18715D001E5F23 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179B731D18715D001E5F23 /* Colors.swift */; };
 		8A74D20D1D18804800E2D380 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74D20C1D18804800E2D380 /* QRCodeViewController.swift */; };
-		8A74D20F1D18819B00E2D380 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74D20E1D18819B00E2D380 /* SecondViewController.swift */; };
 		8A80C5231D16FCB100D42FFC /* QuestionsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C5221D16FCB100D42FFC /* QuestionsDTO.swift */; };
 		8A80C5251D16FD9E00D42FFC /* TextQuestionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C5241D16FD9E00D42FFC /* TextQuestionDTO.swift */; };
 		8A80C5271D16FF2F00D42FFC /* MultipleChoiceQuestionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C5261D16FF2F00D42FFC /* MultipleChoiceQuestionDTO.swift */; };
@@ -23,7 +22,6 @@
 		8A80C52F1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */; };
 		8A80C5311D172D0000D42FFC /* TextQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */; };
 		8A95E6DF1D29414700D6F83F /* QuestionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */; };
-		8AE214BD1D158DFB003613EE /* response.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AE214BC1D158DFB003613EE /* response.json */; };
 		8AE475091D15757B00BB6100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE475081D15757B00BB6100 /* AppDelegate.swift */; };
 		8AE4750B1D15757B00BB6100 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE4750A1D15757B00BB6100 /* RootViewController.swift */; };
 		8AE475121D15757B00BB6100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AE475101D15757B00BB6100 /* Main.storyboard */; };
@@ -39,7 +37,6 @@
 		8A1609371D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionViewController.swift; sourceTree = "<group>"; };
 		8A179B731D18715D001E5F23 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		8A74D20C1D18804800E2D380 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
-		8A74D20E1D18819B00E2D380 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		8A80C5221D16FCB100D42FFC /* QuestionsDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsDTO.swift; sourceTree = "<group>"; };
 		8A80C5241D16FD9E00D42FFC /* TextQuestionDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextQuestionDTO.swift; sourceTree = "<group>"; };
 		8A80C5261D16FF2F00D42FFC /* MultipleChoiceQuestionDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionDTO.swift; sourceTree = "<group>"; };
@@ -49,7 +46,6 @@
 		8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleCoiceAnswerDTO.swift; sourceTree = "<group>"; };
 		8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextQuestionViewController.swift; sourceTree = "<group>"; };
 		8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPageViewController.swift; sourceTree = "<group>"; };
-		8AE214BC1D158DFB003613EE /* response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response.json; sourceTree = "<group>"; };
 		8AE475051D15757B00BB6100 /* EdL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EdL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE475081D15757B00BB6100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AE4750A1D15757B00BB6100 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +125,6 @@
 				8AFF40151D17E3C8005E3BA5 /* Storyboards */,
 				8AFF40141D17E3AC005E3BA5 /* ViewControllers */,
 				8A80C5211D16FC2A00D42FFC /* DTOs */,
-				8AE214BC1D158DFB003613EE /* response.json */,
 				8AE475081D15757B00BB6100 /* AppDelegate.swift */,
 				8AE475131D15757B00BB6100 /* Assets.xcassets */,
 				8AE475181D15757B00BB6100 /* Info.plist */,
@@ -143,7 +138,6 @@
 		8AFF40141D17E3AC005E3BA5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8A74D20E1D18819B00E2D380 /* SecondViewController.swift */,
 				8A74D20C1D18804800E2D380 /* QRCodeViewController.swift */,
 				8AE4750A1D15757B00BB6100 /* RootViewController.swift */,
 				8A1609371D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift */,
@@ -224,7 +218,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AE214BD1D158DFB003613EE /* response.json in Resources */,
 				8A1609361D15AEE30081D0AF /* Questions.storyboard in Resources */,
 				8AE475171D15757B00BB6100 /* LaunchScreen.storyboard in Resources */,
 				8AE475141D15757B00BB6100 /* Assets.xcassets in Resources */,
@@ -287,7 +280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A74D20F1D18819B00E2D380 /* SecondViewController.swift in Sources */,
 				8A1609341D15A07B0081D0AF /* QuestionController.swift in Sources */,
 				8AE4750B1D15757B00BB6100 /* RootViewController.swift in Sources */,
 				8A1609381D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift in Sources */,

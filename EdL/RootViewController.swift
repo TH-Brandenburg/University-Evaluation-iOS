@@ -19,6 +19,8 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageV
     var questions: QuestionsDTO!
     var answers: AnswersDTO!
     
+    var questionData: JSON!
+    
     var previousIndex: Int = 0
     
     var questionPageViewController: QuestionPageViewController!
@@ -28,23 +30,8 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageV
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        //Load json with test data from file
-        let path = NSBundle.mainBundle().pathForResource("response.json", ofType: nil)
-        
-        var fileContents: String? = nil
-        do {
-            fileContents = try String(contentsOfFile: path!, encoding: NSUTF8StringEncoding)
-        } catch _ as NSError {
-            print("Can't open response.json")
-        }
-        
-        let data: JSON
-        
-        if let dataFromString = fileContents!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-            data = JSON(data: dataFromString)
-            self.questions = Helper.parseJSON(data)
-            self.answers = Helper.createAnswersDTO(self.questions, voteToken: "token", deviceID: "id")
-        }
+        self.questions = Helper.parseJSON(self.questionData)
+        self.answers = Helper.createAnswersDTO(self.questions, voteToken: "token", deviceID: "id")
     }
 
 
