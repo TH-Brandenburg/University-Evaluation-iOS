@@ -22,14 +22,14 @@ class MultipleChoiceQuestionViewController: UIViewController {
             if button == sender && !button.selected{
                 button.selected = true
                 if let btnIndex = buttons.indexOf(button){
-                    button.layer.backgroundColor = Colors.grades[questionDTO.choices[btnIndex].grade].CGColor
+                    button.layer.backgroundColor = Colors.grades[abs(questionDTO.choices[btnIndex].grade)].CGColor
                     answerDTO.choice = questionDTO.choices[btnIndex]
                     print("Choice: \(answerDTO.choice!.choiceText)")
                 }
             } else {
                 button.selected = false
                 if let btnIndex = buttons.indexOf(button){
-                    button.layer.backgroundColor = Colors.gradesLight[questionDTO.choices[btnIndex].grade].CGColor
+                    button.layer.backgroundColor = Colors.gradesLight[abs(questionDTO.choices[btnIndex].grade)].CGColor
                 }
                 if button == sender{
                     answerDTO.choice = nil
@@ -53,7 +53,7 @@ class MultipleChoiceQuestionViewController: UIViewController {
             if let button = self.view.viewWithTag(20 + i) as? UIButton{
                 button.setTitle(questionDTO.choices[i].choiceText, forState: .Normal)
                 button.layer.cornerRadius = 5
-                button.layer.backgroundColor = Colors.gradesLight[questionDTO.choices[i].grade].CGColor
+                button.layer.backgroundColor = Colors.gradesLight[abs(questionDTO.choices[i].grade)].CGColor
                 buttons.append(button)
             }
         }
@@ -61,7 +61,7 @@ class MultipleChoiceQuestionViewController: UIViewController {
         if let choice = answerDTO.choice{
             if let choiceIndex = questionDTO.choices.indexOf({$0 === choice}){
                 buttons[choiceIndex].selected = true
-                buttons[choiceIndex].layer.backgroundColor = Colors.grades[questionDTO.choices[choiceIndex].grade].CGColor
+                buttons[choiceIndex].layer.backgroundColor = Colors.grades[abs(questionDTO.choices[choiceIndex].grade)].CGColor
             }
         }
         
