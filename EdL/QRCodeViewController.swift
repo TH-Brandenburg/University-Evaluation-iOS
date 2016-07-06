@@ -212,7 +212,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     if(response.response?.statusCode >= 400) {
                         let alertView = UIAlertController(title: "Falscher QR Code", message: "Bitte überprüfen, ob der QR Code nicht bereits genutzt wurde.", preferredStyle: .Alert)
                         alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
-                        self.captureSession?.startRunning()}))
+                        self.captureSession?.startRunning()
+                        self.messageLabel.textColor = UIColor.whiteColor()
+                        self.messageLabel.text = "Bitte QR-Code scannen"
+                        }))
                         self.presentViewController(alertView, animated: true, completion: nil)
                         // handle 409 specific error here, if you want
                         //print("Request failed with error: \(error)")
@@ -220,7 +223,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                         } else if(response.result.error?.code == -1004) {
                             let alertView = UIAlertController(title: "Fehler", message: "Server ist zurzeit nicht erreichbar.", preferredStyle: .Alert)
                         alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
-                        self.captureSession?.startRunning()}))
+                        self.captureSession?.startRunning()
+                        self.messageLabel.textColor = UIColor.whiteColor()
+                        self.messageLabel.text = "Bitte QR-Code scannen"}))
                             self.presentViewController(alertView, animated: true, completion: nil)
                     }
             
