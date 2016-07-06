@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import SwiftyJSON
 import Alamofire
-
+import AudioToolbox
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -19,6 +19,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var responseData: JSON!
     var host: String = ""
     var voteToken: String = ""
+    var qrCodeContent: String = ""
     
     @IBOutlet weak var messageLabel:UILabel!
     @IBOutlet weak var blurEffectView: UIVisualEffectView!
@@ -33,6 +34,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     {
         captureSession?.startRunning()
         messageLabel.text = "Bitte QR-Code scannen"
+        messageLabel.textColor = UIColor.whiteColor()
         let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         switch authorizationStatus {
         case .NotDetermined:
@@ -150,13 +152,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 voteTokenBool = true
             }
             
-            print(hostBool)
-            print(voteTokenBool)
-            
             if (voteTokenBool && hostBool){
                 host = json["host"].string!
                 voteToken = json["voteToken"].string!
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
                 sendRequest(host, voteToken: voteToken)
+                messageLabel.textColor = UIColor.clearColor()
                 qrCodeFrameView?.frame = CGRectZero
                 captureSession?.stopRunning()
             } else {
