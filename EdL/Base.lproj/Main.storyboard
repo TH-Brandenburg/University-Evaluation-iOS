@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3h-pU-vEd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1364" y="412"/>
+            <point key="canvasLocation" x="1364" y="518"/>
         </scene>
         <!--QR-Code scannen-->
         <scene sceneID="sI3-JT-tMW">
@@ -118,7 +118,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="7ix-Ap-hEI" customClass="QuestionPageViewController" customModule="EdL" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fA-29-zVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2107" y="412"/>
+            <point key="canvasLocation" x="2115" y="518"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ROX-Q0-Q4o">

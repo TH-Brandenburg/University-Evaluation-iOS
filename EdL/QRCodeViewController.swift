@@ -198,11 +198,29 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
         
         Alamofire.request(request)
+            .validate()
             .responseJSON { response in
                 // do whatever you want here
                 switch response.result {
                 case .Failure(let error):
-                    print(error)
+                    print(response.response?.statusCode)
+                    print("Request failed with error: \(error)")
+                    //print("RESULT" + String(response.result))
+                    if(response.response?.statusCode >= 400) {
+                        let alertView = UIAlertController(title: "Falscher QR Code", message: "Bitte überprüfen, ob der QR Code nicht bereits genutzt wurde.", preferredStyle: .Alert)
+                        alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
+                        self.captureSession?.startRunning()}))
+                        self.presentViewController(alertView, animated: true, completion: nil)
+                        // handle 409 specific error here, if you want
+                        //print("Request failed with error: \(error)")
+                        //print("Test")
+                        } else if(response.result.error?.code == -1004) {
+                            let alertView = UIAlertController(title: "Fehler", message: "Server ist zurzeit nicht erreichbar.", preferredStyle: .Alert)
+                        alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
+                        self.captureSession?.startRunning()}))
+                            self.presentViewController(alertView, animated: true, completion: nil)
+                    }
+            
                 case .Success:
                     //print(responseObject)
                     if let value = response.result.value{
