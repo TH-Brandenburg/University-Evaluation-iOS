@@ -142,8 +142,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             let json = JSON(data: data)
             var hostBool:Bool = false
             var voteTokenBool:Bool = false
-            host = json["host"].string!
-            voteToken = json["voteToken"].string!
             
             if json["host"].string != nil {
                 hostBool = true
@@ -152,8 +150,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 voteTokenBool = true
             }
             
-            //print(host)
+            print(hostBool)
+            print(voteTokenBool)
+            
             if (voteTokenBool && hostBool){
+                host = json["host"].string!
+                voteToken = json["voteToken"].string!
                 sendRequest(host, voteToken: voteToken)
                 qrCodeFrameView?.frame = CGRectZero
                 captureSession?.stopRunning()
