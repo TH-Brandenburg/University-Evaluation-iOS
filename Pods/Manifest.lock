@@ -1,18 +1,25 @@
 PODS:
   - AKPickerView-Swift (1.0.1)
   - Alamofire (3.4.1)
+  - AlamofireNetworkActivityIndicator (1.0.1):
+    - Alamofire (~> 3.3)
+  - EVReflection (2.38.2)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - AKPickerView-Swift (~> 1.0)
   - Alamofire (~> 3.4)
+  - AlamofireNetworkActivityIndicator (~> 1.0)
+  - EVReflection (~> 2.38)
   - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
   AKPickerView-Swift: 8509d472bb257649383c276506334a7373d3cb33
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  AlamofireNetworkActivityIndicator: 49a6e39afb947136f7b1872bae2d684957c26697
+  EVReflection: 513bdc21d6b2c3e37668500f8098789cbe0d7eb9
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: baa6a7c1f95d12a6b8f3e41918d7267fbe684b4e
+PODFILE CHECKSUM: c1703ce6a7e35c2049fb8a0f74d761e8e26f1fb2
 
 COCOAPODS: 1.0.1

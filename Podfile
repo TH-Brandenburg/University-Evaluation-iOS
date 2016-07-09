@@ -7,7 +7,9 @@ target 'EdL' do
 
   # Pods for EdL
   pod 'Alamofire', '~> 3.4'
+  pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
   pod 'SwiftyJSON', '~> 2.3'
   pod 'AKPickerView-Swift', '~> 1.0'
+  pod "EVReflection", '~> 2.38'
 
 end
