@@ -6,7 +6,9 @@
 //
 //
 
-class TextAnswerDTO {
+import EVReflection
+
+class TextAnswerDTO: EVObject {
     
     var questionID: Int
     var questionText: String
@@ -15,6 +17,10 @@ class TextAnswerDTO {
     init(questionID: Int, questionText: String) {
         self.questionID = questionID
         self.questionText = questionText
+    }
+    
+    required init() {
+        fatalError("init() has not been implemented")
     }
     
 }

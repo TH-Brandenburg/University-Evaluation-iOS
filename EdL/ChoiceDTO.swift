@@ -6,7 +6,9 @@
 //
 //
 
-class ChoiceDTO {
+import EVReflection
+
+class ChoiceDTO: EVObject {
     
     var choiceText: String
     var grade: Int
@@ -14,6 +16,10 @@ class ChoiceDTO {
     init(choiceText: String, grade: Int){
         self.choiceText = choiceText
         self.grade = grade
+    }
+    
+    required init() {
+        fatalError("init() has not been implemented")
     }
     
 }

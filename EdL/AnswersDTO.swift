@@ -6,7 +6,9 @@
 //
 //
 
-class AnswersDTO {
+import EVReflection
+
+class AnswersDTO: EVObject {
     
     var voteToken: String
     var studyPath: String?
@@ -17,6 +19,14 @@ class AnswersDTO {
     init(voteToken: String, deviceID: String) {
         self.voteToken = voteToken
         self.deviceID = deviceID
+    }
+    
+    required convenience init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    required init() {
+        fatalError("init() has not been implemented")
     }
     
 }
