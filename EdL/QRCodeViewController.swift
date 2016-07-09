@@ -17,6 +17,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
     var responseData: JSON!
+    var deviceID: String = ""
     var host: String = ""
     var voteToken: String = ""
     var qrCodeContent: String = ""
@@ -155,8 +156,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             if (voteTokenBool && hostBool){
                 host = json["host"].string!
                 voteToken = json["voteToken"].string!
+                deviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
                 AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                sendRequest(host, voteToken: voteToken)
+                sendRequest(host, voteToken: voteToken, deviceID: deviceID)
                 messageLabel.textColor = UIColor.clearColor()
                 qrCodeFrameView?.frame = CGRectZero
                 captureSession?.stopRunning()
@@ -189,12 +191,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         cameraAllowsAccessToApplicationCheck()
     }
     
-    func sendRequest(host:String, voteToken:String) {
+    func sendRequest(host:String, voteToken:String, deviceID:String) {
         let request = NSMutableURLRequest(URL: NSURL(string: host + "/v1/questions")!)
         request.HTTPMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let jsonBody = ["voteToken": voteToken, "host": host, "deviceID": 1234]
+        let jsonBody = ["voteToken": voteToken, "host": host, "deviceID": deviceID]
         
         print(jsonBody)
         
@@ -212,23 +214,40 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     if(response.response?.statusCode >= 400) {
                         let alertView = UIAlertController(title: "Falscher QR Code", message: "Bitte überprüfen, ob der QR Code nicht bereits genutzt wurde.", preferredStyle: .Alert)
                         alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
-                        self.captureSession?.startRunning()
-                        self.messageLabel.textColor = UIColor.whiteColor()
-                        self.messageLabel.text = "Bitte QR-Code scannen"
+                            self.captureSession?.startRunning()
+                            self.messageLabel.textColor = UIColor.whiteColor()
+                            self.messageLabel.text = "Bitte QR-Code scannen"
                         }))
                         self.presentViewController(alertView, animated: true, completion: nil)
                         // handle 409 specific error here, if you want
                         //print("Request failed with error: \(error)")
                         //print("Test")
-                        } else if(response.result.error?.code == -1004) {
+                    } else { if let errorCode = response.result.error?.code {
+                        switch(errorCode) {
+                        case -1001:
                             let alertView = UIAlertController(title: "Fehler", message: "Server ist zurzeit nicht erreichbar.", preferredStyle: .Alert)
-                        alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
-                        self.captureSession?.startRunning()
-                        self.messageLabel.textColor = UIColor.whiteColor()
-                        self.messageLabel.text = "Bitte QR-Code scannen"}))
+                            alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
+                                self.captureSession?.startRunning()
+                                self.messageLabel.textColor = UIColor.whiteColor()
+                                self.messageLabel.text = "Bitte QR-Code scannen"}))
                             self.presentViewController(alertView, animated: true, completion: nil)
-                    }
-            
+                        case -1004:
+                            let alertView = UIAlertController(title: "Fehler", message: "Server ist zurzeit nicht erreichbar.", preferredStyle: .Alert)
+                            alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
+                                self.captureSession?.startRunning()
+                                self.messageLabel.textColor = UIColor.whiteColor()
+                                self.messageLabel.text = "Bitte QR-Code scannen"}))
+                            self.presentViewController(alertView, animated: true, completion: nil)
+                        default:
+                            let alertView = UIAlertController(title: "Fehler", message: "Server ist zurzeit nicht erreichbar.", preferredStyle: .Alert)
+                            alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {_ in
+                                self.captureSession?.startRunning()
+                                self.messageLabel.textColor = UIColor.whiteColor()
+                                self.messageLabel.text = "Bitte QR-Code scannen"}))
+                        }
+                        }
+                    } //else if(response.result.error?.code == -100)
+                    
                 case .Success:
                     //print(responseObject)
                     if let value = response.result.value{
