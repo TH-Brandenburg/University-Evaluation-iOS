@@ -16,9 +16,13 @@ class QuestionController: NSObject, UIPageViewControllerDataSource, AKPickerView
     var questions: QuestionsDTO
     var answers: AnswersDTO
     
+    let otherPagesCount = 2
+    
     enum QuestionType {
         case MultipleChoice
         case Text
+        case StudyPath
+        case Completion
     }
     
     init(questions: QuestionsDTO, answers: AnswersDTO) {
@@ -31,17 +35,21 @@ class QuestionController: NSObject, UIPageViewControllerDataSource, AKPickerView
         // Return the data view controller for the given index.
         // Create a new view controller and pass suitable data.
         
-        if questions.textQuestionsFirst{
-            if index < questions.textQuestions.count{
-                return createViewController(.Text, index: index, localIndex: index, storyboard: storyboard)
+        if index == 0 {
+            return createViewController(.StudyPath, index: index, localIndex: index, storyboard: storyboard)
+        } else if index == questions.textQuestions.count + questions.multipleChoiceQuestions.count + otherPagesCount - 1 {
+            return createViewController(.Completion, index: index, localIndex: index, storyboard: storyboard)
+        } else if questions.textQuestionsFirst {
+            if index < questions.textQuestions.count + 1 {
+                return createViewController(.Text, index: index, localIndex: index - 1, storyboard: storyboard)
             } else {
-                return createViewController(.MultipleChoice, index: index, localIndex: index - questions.textQuestions.count, storyboard: storyboard)
+                return createViewController(.MultipleChoice, index: index, localIndex: index - questions.textQuestions.count - 1, storyboard: storyboard)
             }
         } else {
-            if index < questions.multipleChoiceQuestions.count{
-                return createViewController(.MultipleChoice, index: index, localIndex: index, storyboard: storyboard)
+            if index < questions.multipleChoiceQuestions.count + 1 {
+                return createViewController(.MultipleChoice, index: index, localIndex: index - 1, storyboard: storyboard)
             } else {
-                return createViewController(.Text, index: index, localIndex: index - questions.multipleChoiceQuestions.count, storyboard: storyboard)
+                return createViewController(.Text, index: index, localIndex: index - questions.multipleChoiceQuestions.count - 1, storyboard: storyboard)
             }
         }
     }
@@ -61,6 +69,17 @@ class QuestionController: NSObject, UIPageViewControllerDataSource, AKPickerView
             textQuestionViewController.index = index
             textQuestionViewController.localIndex = localIndex
             return textQuestionViewController
+        } else if type == .StudyPath{
+            let studyPathViewController = storyboard.instantiateViewControllerWithIdentifier("StudyPath") as! StudyPathViewController
+            studyPathViewController.studyPaths = questions.studyPaths
+            studyPathViewController.answersDTO = answers
+            studyPathViewController.index = index
+            return studyPathViewController
+        } else if type == .Completion{
+            let completionViewController = storyboard.instantiateViewControllerWithIdentifier("Completion") as! CompletionViewController
+            completionViewController.answersDTO = answers
+            completionViewController.index = index
+            return completionViewController
         }
         return nil
     }
@@ -72,6 +91,14 @@ class QuestionController: NSObject, UIPageViewControllerDataSource, AKPickerView
         }
 
         if let questionViewController = viewController as? MultipleChoiceQuestionViewController{
+            return questionViewController.index
+        }
+        
+        if let questionViewController = viewController as? StudyPathViewController{
+            return questionViewController.index
+        }
+        
+        if let questionViewController = viewController as? CompletionViewController{
             return questionViewController.index
         }
         
@@ -98,7 +125,7 @@ class QuestionController: NSObject, UIPageViewControllerDataSource, AKPickerView
         
         index += 1
         
-        if index == questions.multipleChoiceQuestions.count + questions.textQuestions.count {
+        if index == questions.multipleChoiceQuestions.count + questions.textQuestions.count + self.otherPagesCount {
             return nil
         }
         return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
@@ -107,10 +134,17 @@ class QuestionController: NSObject, UIPageViewControllerDataSource, AKPickerView
     // MARK: - AKPickerViewDataSource
     
     func numberOfItemsInPickerView(pickerView: AKPickerView) -> Int {
-        return self.questions.multipleChoiceQuestions.count + self.questions.textQuestions.count
+        return self.questions.multipleChoiceQuestions.count + self.questions.textQuestions.count + self.otherPagesCount
     }
     
     func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
+        if item == 0 {
+            return "Studiengang"
+        }
+        if item == self.numberOfItemsInPickerView(pickerView) - 1 {
+            return "Absenden"
+        }
+        
         return String(item)
     }
     

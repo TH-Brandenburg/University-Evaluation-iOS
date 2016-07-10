@@ -22,6 +22,8 @@
 		8A80C52F1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */; };
 		8A80C5311D172D0000D42FFC /* TextQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */; };
 		8A95E6DF1D29414700D6F83F /* QuestionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */; };
+		8AC2ADEB1D317D7C004F4B7F /* StudyPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2ADEA1D317D7C004F4B7F /* StudyPathViewController.swift */; };
+		8AC2ADED1D317D8E004F4B7F /* CompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2ADEC1D317D8E004F4B7F /* CompletionViewController.swift */; };
 		8AE475091D15757B00BB6100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE475081D15757B00BB6100 /* AppDelegate.swift */; };
 		8AE4750B1D15757B00BB6100 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE4750A1D15757B00BB6100 /* RootViewController.swift */; };
 		8AE475121D15757B00BB6100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AE475101D15757B00BB6100 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleCoiceAnswerDTO.swift; sourceTree = "<group>"; };
 		8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextQuestionViewController.swift; sourceTree = "<group>"; };
 		8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPageViewController.swift; sourceTree = "<group>"; };
+		8AC2ADEA1D317D7C004F4B7F /* StudyPathViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyPathViewController.swift; sourceTree = "<group>"; };
+		8AC2ADEC1D317D8E004F4B7F /* CompletionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionViewController.swift; sourceTree = "<group>"; };
 		8AE475051D15757B00BB6100 /* EdL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EdL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE475081D15757B00BB6100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AE4750A1D15757B00BB6100 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				8A1609371D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift */,
 				8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */,
 				8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */,
+				8AC2ADEA1D317D7C004F4B7F /* StudyPathViewController.swift */,
+				8AC2ADEC1D317D8E004F4B7F /* CompletionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -291,8 +297,10 @@
 				8A80C5251D16FD9E00D42FFC /* TextQuestionDTO.swift in Sources */,
 				8A74D20D1D18804800E2D380 /* QRCodeViewController.swift in Sources */,
 				8A95E6DF1D29414700D6F83F /* QuestionPageViewController.swift in Sources */,
+				8AC2ADEB1D317D7C004F4B7F /* StudyPathViewController.swift in Sources */,
 				8AE475091D15757B00BB6100 /* AppDelegate.swift in Sources */,
 				8A80C5291D16FFA200D42FFC /* ChoiceDTO.swift in Sources */,
+				8AC2ADED1D317D8E004F4B7F /* CompletionViewController.swift in Sources */,
 				8AFF40131D17E1CE005E3BA5 /* Helper.swift in Sources */,
 				8A80C5311D172D0000D42FFC /* TextQuestionViewController.swift in Sources */,
 				8A80C5231D16FCB100D42FFC /* QuestionsDTO.swift in Sources */,
