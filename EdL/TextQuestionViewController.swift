@@ -30,11 +30,6 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let camera = UIBarButtonItem(barButtonSystemItem: .Camera,
-                                     target: self,
-                                     action: #selector(RootViewController.takePhoto(_:))
-        )
-        parentViewController!.parentViewController!.navigationItem.rightBarButtonItem = camera
         
         // Do any additional setup after loading the view.
     }
@@ -45,8 +40,6 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        navigationItem
         
         //Question Text
         if let questionTextView = self.view.viewWithTag(10) as? UITextView{
@@ -65,6 +58,21 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
                 answerTextView.text = "Antwort eingeben..."
                 answerTextView.textColor = UIColor.lightGrayColor()
             }
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let camera = UIBarButtonItem(barButtonSystemItem: .Camera,
+                                     target: self,
+                                     action: #selector(self.takePhoto(_:))
+        )
+        parentViewController!.parentViewController!.navigationItem.rightBarButtonItem = camera
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        // Remove NavBarButton for Camera, if exists
+        if ((parentViewController?.parentViewController?.navigationItem) != nil){
+            parentViewController!.parentViewController!.navigationItem.rightBarButtonItem = nil
         }
     }
     
@@ -87,6 +95,13 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
             return false
         }
         return true
+    }
+    
+    // MARK: - Image Picker View Delegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        return
     }
     
 

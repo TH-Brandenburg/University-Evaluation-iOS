@@ -74,10 +74,6 @@ class MultipleChoiceQuestionViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         //super.viewWillAppear(animated)
-        // Remove NavBarButton for Camera, if exists
-        if ((parentViewController?.parentViewController?.navigationItem) != nil){
-            parentViewController!.parentViewController!.navigationItem.rightBarButtonItem = nil
-        }
     }
     
 
