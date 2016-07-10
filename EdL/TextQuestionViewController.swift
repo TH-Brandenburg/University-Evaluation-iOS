@@ -8,16 +8,34 @@
 
 import UIKit
 
-class TextQuestionViewController: UIViewController, UITextViewDelegate {
+
+
+class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var questionDTO: TextQuestionDTO!
     var answerDTO: TextAnswerDTO!
     var index: Int = -1
     var localIndex: Int = -1
+    
+    var imagePicker: UIImagePickerController!
+    
+    func takePhoto(sender: UIBarButtonItem) {
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let camera = UIBarButtonItem(barButtonSystemItem: .Camera,
+                                     target: self,
+                                     action: #selector(RootViewController.takePhoto(_:))
+        )
+        parentViewController!.parentViewController!.navigationItem.rightBarButtonItem = camera
+        
         // Do any additional setup after loading the view.
     }
 
@@ -27,6 +45,8 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        navigationItem
         
         //Question Text
         if let questionTextView = self.view.viewWithTag(10) as? UITextView{

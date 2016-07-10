@@ -10,11 +10,22 @@ import UIKit
 import SwiftyJSON
 import AKPickerView_Swift
 
-class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDelegate, AKPickerViewDelegate {
+class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageViewControllerDelegate, UIImagePickerControllerDelegate, AKPickerViewDelegate {
 
     
     @IBOutlet weak var pageViewControllerContainer: UIView!
     @IBOutlet weak var pickerView: AKPickerView!
+    
+    var imagePicker: UIImagePickerController!
+    
+    func takePhoto(sender: UIBarButtonItem) {
+        imagePicker =  UIImagePickerController()
+        //imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
     
     var questions: QuestionsDTO!
     var answers: AnswersDTO!
