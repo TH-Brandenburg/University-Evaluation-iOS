@@ -193,5 +193,93 @@
             </objects>
             <point key="canvasLocation" x="1042" y="363"/>
         </scene>
+        <!--StudyPath-->
+        <scene sceneID="OIn-5m-hUO">
+            <objects>
+                <viewController storyboardIdentifier="StudyPath" title="StudyPath" id="ysW-Wf-CN4" customClass="StudyPathViewController" customModule="EdL" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pdV-Ft-faZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="98K-8b-Qht"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fRI-Q4-6HP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wählen Sie Ihren Studiengang:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWE-6J-BKu">
+                                <rect key="frame" x="20" y="28" width="287" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IeA-8I-42a">
+                                <rect key="frame" x="20" y="54" width="560" height="526"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IeA-8I-42a" firstAttribute="leading" secondItem="fRI-Q4-6HP" secondAttribute="leading" constant="20" id="19z-IY-047"/>
+                            <constraint firstItem="98K-8b-Qht" firstAttribute="top" secondItem="IeA-8I-42a" secondAttribute="bottom" constant="20" id="4pD-zc-tht"/>
+                            <constraint firstItem="bWE-6J-BKu" firstAttribute="leading" secondItem="fRI-Q4-6HP" secondAttribute="leading" constant="20" id="Yp4-z5-Gr3"/>
+                            <constraint firstAttribute="trailing" secondItem="IeA-8I-42a" secondAttribute="trailing" constant="20" id="ZWC-oO-O5c"/>
+                            <constraint firstItem="bWE-6J-BKu" firstAttribute="top" secondItem="pdV-Ft-faZ" secondAttribute="bottom" constant="8" id="gEG-Da-Lm8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonStackView" destination="IeA-8I-42a" id="5q4-6I-Pwp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jFO-c5-hid" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1798" y="363"/>
+        </scene>
+        <!--Completion-->
+        <scene sceneID="b43-c0-Ydb">
+            <objects>
+                <viewController storyboardIdentifier="Completion" title="Completion" id="vNG-ve-x97" customClass="CompletionViewController" customModule="EdL" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4MR-IN-kCn"/>
+                        <viewControllerLayoutGuide type="bottom" id="9sV-9x-zjq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GGF-IT-Y4D">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Das war's!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5D-zI-mHd">
+                                <rect key="frame" x="20" y="28" width="97" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgu-oy-naW">
+                                <rect key="frame" x="150" y="522" width="300" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="12f-VR-cEI"/>
+                                    <constraint firstAttribute="height" constant="60" id="x6d-UD-TF4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Ergebnisse absenden">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submit:" destination="vNG-ve-x97" eventType="touchUpInside" id="kZf-fV-Zei"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9sV-9x-zjq" firstAttribute="top" secondItem="Tgu-oy-naW" secondAttribute="bottom" constant="18" id="32p-ps-fBQ"/>
+                            <constraint firstItem="C5D-zI-mHd" firstAttribute="leading" secondItem="GGF-IT-Y4D" secondAttribute="leading" constant="20" id="4pS-va-Zuj"/>
+                            <constraint firstItem="Tgu-oy-naW" firstAttribute="centerX" secondItem="GGF-IT-Y4D" secondAttribute="centerX" id="G28-Eo-I3o"/>
+                            <constraint firstItem="C5D-zI-mHd" firstAttribute="top" secondItem="4MR-IN-kCn" secondAttribute="bottom" constant="8" id="ifY-yH-9Ba"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="submitButton" destination="Tgu-oy-naW" id="EuZ-1a-E7F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GNZ-x2-lUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2537" y="363"/>
+        </scene>
     </scenes>
 </document>
