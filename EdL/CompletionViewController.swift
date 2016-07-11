@@ -22,36 +22,6 @@ class CompletionViewController: UIViewController {
     @IBAction func submit(sender: UIButton) {
         print("Answers:\n\(answersDTO.toJsonString())")
         let answers = answersDTO.toJsonString()
-        //let answersJSON = JSON(answers)
-//        let request = NSMutableURLRequest(URL: NSURL(string: "http://172.20.214.195:8080/v1/answers")!)
-//        request.HTTPMethod = "POST"
-//        request.setValue("application/", forHTTPHeaderField: "Content-Type")
-//            
-//        let jsonBody = ["answers-dto": answers]
-//        
-//        print(jsonBody)
-//        print()
-//        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
-        
-//        Alamofire.request(.POST, "http://172.20.214.195:8080/v1/answers", parameters: ["answers-dto": answers])
-//            .validate()
-//            .responseJSON { response in
-//                // do whatever you want here
-//                switch response.result {
-//                case .Failure(let error):
-//                    print(response.response?.statusCode)
-//                    print("Request failed with error: \(error)")
-//                    //print("RESULT" + String(response.result))
-//                case .Success:
-//                    //print(responseObject)
-//                    if let value = response.result.value{
-//                        self.responseData = JSON(value)
-//                        print("responseData: \(self.responseData)")
-//                        self.performSegueWithIdentifier("submit", sender: nil)
-//                    }
-//                }
-//                    
-//        }
         Alamofire.upload(.POST, "http://172.20.214.195:8080/v1/answers",
                     multipartFormData: { multipartFormData in
                         multipartFormData.appendBodyPart(data: answers.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"answers-dto")
@@ -68,23 +38,6 @@ class CompletionViewController: UIViewController {
                             }
             }
         )
-//        .responseJSON { response in
-//                // do whatever you want here
-//                switch response.result {
-//                case .Failure(let error):
-//                    print(response.response?.statusCode)
-//                    print("Request failed with error: \(error)")
-//                //print("RESULT" + String(response.result))
-//                case .Success:
-//                    //print(responseObject)
-//                    if let value = response.result.value{
-//                        self.responseData = JSON(value)
-//                        print("responseData: \(self.responseData)")
-//                        self.performSegueWithIdentifier("submit", sender: nil)
-//                    }
-//                }
-//                
-//        }
     }
 
     
