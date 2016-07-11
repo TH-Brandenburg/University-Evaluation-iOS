@@ -4,6 +4,7 @@ PODS:
   - AlamofireNetworkActivityIndicator (1.0.1):
     - Alamofire (~> 3.3)
   - EVReflection (2.38.2)
+  - SSZipArchive (1.3)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.4)
   - AlamofireNetworkActivityIndicator (~> 1.0)
   - EVReflection (~> 2.38)
+  - SSZipArchive (~> 1.3)
   - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
@@ -18,8 +20,9 @@ SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AlamofireNetworkActivityIndicator: 49a6e39afb947136f7b1872bae2d684957c26697
   EVReflection: 513bdc21d6b2c3e37668500f8098789cbe0d7eb9
+  SSZipArchive: 5525196ee195b473dcc4a0d4d2cba98bfa3eb1c1
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: c1703ce6a7e35c2049fb8a0f74d761e8e26f1fb2
+PODFILE CHECKSUM: 408622b62c550ab058adf10dd8f8b3ca3016b09f
 
 COCOAPODS: 1.0.1

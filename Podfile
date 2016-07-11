@@ -10,6 +10,6 @@ target 'EdL' do
   pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
   pod 'SwiftyJSON', '~> 2.3'
   pod 'AKPickerView-Swift', '~> 1.0'
-  pod "EVReflection", '~> 2.38'
-
+  pod 'EVReflection', '~> 2.38'
+  pod 'SSZipArchive', '~> 1.3'
 end
