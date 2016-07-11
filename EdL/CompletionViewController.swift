@@ -22,22 +22,33 @@ class CompletionViewController: UIViewController {
     @IBAction func submit(sender: UIButton) {
         print("Answers:\n\(answersDTO.toJsonString())")
         let answers = answersDTO.toJsonString()
-        Alamofire.upload(.POST, "http://172.20.214.195:8080/v1/answers",
-                    multipartFormData: { multipartFormData in
-                        multipartFormData.appendBodyPart(data: answers.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"answers-dto")
-                        multipartFormData.appendBodyPart(data: NSData(), name :"images")
-                    },
-                          encodingCompletion: { encodingResult in
-                            switch encodingResult {
-                            case .Success(let upload, _, _):
-                                upload.responseJSON { response in
-                                    debugPrint(response)
+        
+        var textQuestionIDs: [Int] = []
+        for textAnswer in answersDTO.textAnswers{
+            textQuestionIDs.append(textAnswer.questionID)
+        }
+        
+        let images = Helper.zipImages()
+        
+        if images != nil {
+            Alamofire.upload(.POST, "http://192.168.0.14:8080/v1/answers",
+                             multipartFormData: { multipartFormData in
+                                multipartFormData.appendBodyPart(data: answers.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"answers-dto")
+                                multipartFormData.appendBodyPart(data: images!, name :"images")
+                },
+                             encodingCompletion: { encodingResult in
+                                switch encodingResult {
+                                case .Success(let upload, _, _):
+                                    upload.responseJSON { response in
+                                        debugPrint(response)
+                                    }
+                                case .Failure(let encodingError):
+                                    print(encodingError)
                                 }
-                            case .Failure(let encodingError):
-                                print(encodingError)
-                            }
-            }
-        )
+                }
+            )
+        }
+        
     }
 
     

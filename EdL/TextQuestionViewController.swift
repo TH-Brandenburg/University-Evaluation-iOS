@@ -101,7 +101,24 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        return
+
+        let image1000 = Helper.resizeImage(image, newWidth: 1000) //resize to 1000px width
+        let data = UIImageJPEGRepresentation(image1000, 0.8)
+        do {
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+            let dataPath = documentsPath.stringByAppendingPathComponent("images")
+            print(dataPath)
+            do {
+                try NSFileManager.defaultManager().createDirectoryAtPath(dataPath, withIntermediateDirectories: true, attributes: nil)
+            } catch let error as NSError {
+                print(error.localizedDescription);
+            }
+            try data?.writeToFile("\(dataPath)/\(answerDTO.questionID).jpg", options: .DataWritingAtomic)
+            
+        } catch let error as NSError {
+            print(error.localizedDescription);
+        }
+        print("Saved image!")
     }
     
 
