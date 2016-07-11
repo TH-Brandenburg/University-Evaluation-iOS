@@ -7,22 +7,92 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class CompletionViewController: UIViewController {
     
     @IBOutlet weak var submitButton: UIButton!
     
     var answersDTO: AnswersDTO!
+    var responseData: JSON!
     var index: Int = -1
-    
+    var deviceID: String = ""
     
     @IBAction func submit(sender: UIButton) {
         print("Answers:\n\(answersDTO.toJsonString())")
-        //performSegueWithIdentifier("submit", sender: self)
+        let answers = answersDTO.toJsonString()
+        //let answersJSON = JSON(answers)
+//        let request = NSMutableURLRequest(URL: NSURL(string: "http://172.20.214.195:8080/v1/answers")!)
+//        request.HTTPMethod = "POST"
+//        request.setValue("application/", forHTTPHeaderField: "Content-Type")
+//            
+//        let jsonBody = ["answers-dto": answers]
+//        
+//        print(jsonBody)
+//        print()
+//        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
+        
+//        Alamofire.request(.POST, "http://172.20.214.195:8080/v1/answers", parameters: ["answers-dto": answers])
+//            .validate()
+//            .responseJSON { response in
+//                // do whatever you want here
+//                switch response.result {
+//                case .Failure(let error):
+//                    print(response.response?.statusCode)
+//                    print("Request failed with error: \(error)")
+//                    //print("RESULT" + String(response.result))
+//                case .Success:
+//                    //print(responseObject)
+//                    if let value = response.result.value{
+//                        self.responseData = JSON(value)
+//                        print("responseData: \(self.responseData)")
+//                        self.performSegueWithIdentifier("submit", sender: nil)
+//                    }
+//                }
+//                    
+//        }
+        Alamofire.upload(.POST, "http://172.20.214.195:8080/v1/answers",
+                    multipartFormData: { multipartFormData in
+                        multipartFormData.appendBodyPart(data: answers.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"answers-dto")
+                        multipartFormData.appendBodyPart(data: NSData(), name :"images")
+                    },
+                          encodingCompletion: { encodingResult in
+                            switch encodingResult {
+                            case .Success(let upload, _, _):
+                                upload.responseJSON { response in
+                                    debugPrint(response)
+                                }
+                            case .Failure(let encodingError):
+                                print(encodingError)
+                            }
+            }
+        )
+//        .responseJSON { response in
+//                // do whatever you want here
+//                switch response.result {
+//                case .Failure(let error):
+//                    print(response.response?.statusCode)
+//                    print("Request failed with error: \(error)")
+//                //print("RESULT" + String(response.result))
+//                case .Success:
+//                    //print(responseObject)
+//                    if let value = response.result.value{
+//                        self.responseData = JSON(value)
+//                        print("responseData: \(self.responseData)")
+//                        self.performSegueWithIdentifier("submit", sender: nil)
+//                    }
+//                }
+//                
+//        }
     }
+
+    
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "submit" {
+            print(responseData)
             //let submitVC = segue.destinationViewController as! SubmitViewController
             //submitVC.jsonString = answersDTO.toJsonString()
         }

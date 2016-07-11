@@ -19,7 +19,10 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageV
     var questions: QuestionsDTO!
     var answers: AnswersDTO!
     
+    var userData: JSON!
     var questionData: JSON!
+    var host: String = ""
+    
     
     var previousIndex: Int = 0
     
@@ -31,7 +34,7 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageV
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         self.questions = Helper.parseJSON(self.questionData)
-        self.answers = Helper.createAnswersDTO(self.questions, voteToken: "token", deviceID: "id")
+        self.answers = Helper.createAnswersDTO(self.questions, voteToken: userData["voteToken"].string!, deviceID: userData["deviceID"].string!)
     }
 
 

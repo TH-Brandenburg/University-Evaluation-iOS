@@ -17,6 +17,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
     var responseData: JSON!
+    var userData: JSON!
     var deviceID: String = ""
     var host: String = ""
     var voteToken: String = ""
@@ -157,6 +158,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 host = json["host"].string!
                 voteToken = json["voteToken"].string!
                 deviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+                userData = ["deviceID": deviceID, "voteToken": voteToken]
                 AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
                 sendRequest(host, voteToken: voteToken, deviceID: deviceID)
                 messageLabel.textColor = UIColor.clearColor()
@@ -172,13 +174,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "afterScan") {
-            
             //Checking identifier is crucial as there might be multiple
             // segues attached to same view
             //print(self.responseObj)
             let detailVC = segue.destinationViewController as! RootViewController;
-            
             detailVC.questionData = self.responseData
+            detailVC.userData = self.userData
+            print(userData)
             
         }
     }
