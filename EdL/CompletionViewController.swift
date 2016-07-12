@@ -33,8 +33,12 @@ class CompletionViewController: UIViewController {
         if images != nil {
             Alamofire.upload(.POST, "http://192.168.0.14:8080/v1/answers",
                              multipartFormData: { multipartFormData in
-                                multipartFormData.appendBodyPart(data: answers.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"answers-dto")
-                                multipartFormData.appendBodyPart(data: images!, name :"images")
+                                multipartFormData.appendBodyPart(data: answers.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
+                                    name: "answers-dto",
+                                    mimeType: "text/plain; charset=UTF-8")
+                                multipartFormData.appendBodyPart(data: images!, name: "images",
+                                    fileName: "images.zip",
+                                    mimeType: "multipart/form-data")
                 },
                              encodingCompletion: { encodingResult in
                                 switch encodingResult {
