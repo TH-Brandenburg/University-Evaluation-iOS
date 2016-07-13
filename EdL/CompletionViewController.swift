@@ -31,7 +31,7 @@ class CompletionViewController: UIViewController {
         let images = Helper.zipImages()
         
         if images != nil {
-            Alamofire.upload(.POST, "http://192.168.0.14:8080/v1/answers",
+            Alamofire.upload(.POST, "\((self.parentViewController!.parentViewController as! RootViewController).host)/v1/answers",
                              multipartFormData: { multipartFormData in
                                 multipartFormData.appendBodyPart(data: answers.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
                                     name: "answers-dto",

@@ -180,6 +180,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             let detailVC = segue.destinationViewController as! RootViewController;
             detailVC.questionData = self.responseData
             detailVC.userData = self.userData
+            detailVC.host = self.host
             print(userData)
             
         }
