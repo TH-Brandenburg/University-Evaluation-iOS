@@ -87,6 +87,11 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate, UIPageV
             embedVC.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: {done in })
             self.questionPageViewController = embedVC
         }
+        if segue.identifier == "submit" {
+            let submitVC = segue.destinationViewController as! SubmitViewController
+            submitVC.answersDTO = self.answers
+            submitVC.host = self.host
+        }
     }
     
     // MARK: - AKPicker

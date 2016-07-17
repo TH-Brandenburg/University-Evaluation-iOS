@@ -12,7 +12,7 @@ class TextAnswerDTO: EVObject {
     
     var questionID: Int
     var questionText: String
-    var answerText: String?
+    var answerText: String = ""
     
     init(questionID: Int, questionText: String) {
         self.questionID = questionID

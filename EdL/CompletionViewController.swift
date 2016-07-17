@@ -7,63 +7,58 @@
 //
 
 import UIKit
-import SwiftyJSON
-import Alamofire
 
 class CompletionViewController: UIViewController {
     
     @IBOutlet weak var submitButton: UIButton!
     
     var answersDTO: AnswersDTO!
-    var responseData: JSON!
     var index: Int = -1
     var deviceID: String = ""
     
     @IBAction func submit(sender: UIButton) {
-        print("Answers:\n\(answersDTO.toJsonString())")
-        let answers = answersDTO.toJsonString()
-        
-        var textQuestionIDs: [Int] = []
-        for textAnswer in answersDTO.textAnswers{
-            textQuestionIDs.append(textAnswer.questionID)
+        var complete = true;
+        for mcAnswer in answersDTO.mcAnswers{
+            if mcAnswer.choice == nil {
+                complete = false
+                break
+            }
         }
         
-        let images = Helper.zipImages()
+        if answersDTO.studyPath == nil {
         
-        if images != nil {
-            Alamofire.upload(.POST, "\((self.parentViewController!.parentViewController as! RootViewController).host)/v1/answers",
-                             multipartFormData: { multipartFormData in
-                                multipartFormData.appendBodyPart(data: answers.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!,
-                                    name: "answers-dto",
-                                    mimeType: "text/plain; charset=UTF-8")
-                                multipartFormData.appendBodyPart(data: images!, name: "images",
-                                    fileName: "images.zip",
-                                    mimeType: "multipart/form-data")
-                },
-                             encodingCompletion: { encodingResult in
-                                switch encodingResult {
-                                case .Success(let upload, _, _):
-                                    upload.responseJSON { response in
-                                        debugPrint(response)
-                                    }
-                                case .Failure(let encodingError):
-                                    print(encodingError)
-                                }
-                }
-            )
+            let alertController = UIAlertController(title: "Studiengang", message:
+            "Bitte wählen Sie Ihren Studiengang.", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Okay", style: .Default,handler: {_ in
+                //Navigate to study path selection
+                (self.parentViewController?.parentViewController as! RootViewController).pickerView.selectItem(0, animated: true)
+            }))
+        
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            return
+            
         }
         
+        if complete {
+            (self.parentViewController?.parentViewController as? RootViewController)?.performSegueWithIdentifier("submit", sender: self)
+        } else {
+            let alertController = UIAlertController(title: "Wirklich absenden?", message:
+                "Sie haben noch nicht alle Fragen beantwortet.", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Trotzdem absenden", style: .Destructive,handler: self.submitAnyway))
+            alertController.addAction(UIAlertAction(title: "Fehlende Fragen beantworten", style: .Default,handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
-
     
-
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "submit" {
-            print(responseData)
-            //let submitVC = segue.destinationViewController as! SubmitViewController
-            //submitVC.jsonString = answersDTO.toJsonString()
+    func submitAnyway(action: UIAlertAction){
+        for mcAnswer in answersDTO.mcAnswers{
+            if mcAnswer.choice == nil {
+                answersDTO.mcAnswers.removeAtIndex(answersDTO.mcAnswers.indexOf(mcAnswer)!)
+            }
         }
+        (self.parentViewController?.parentViewController as? RootViewController)?.performSegueWithIdentifier("submit", sender: self)
     }
 
     override func viewDidLoad() {

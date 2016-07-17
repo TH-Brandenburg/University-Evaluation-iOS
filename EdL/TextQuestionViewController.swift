@@ -52,8 +52,8 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
             answerTextView.layer.borderColor = UIColor(red: 0, green: 122/255, blue: 1, alpha: 1).CGColor
             answerTextView.layer.borderWidth = 1
             answerTextView.delegate = self
-            if let answerText: String = answerDTO.answerText{
-                answerTextView.text = answerText
+            if answerDTO.answerText != ""{
+                answerTextView.text = answerDTO.answerText
             } else {
                 answerTextView.text = "Antwort eingeben..."
                 answerTextView.textColor = UIColor.lightGrayColor()

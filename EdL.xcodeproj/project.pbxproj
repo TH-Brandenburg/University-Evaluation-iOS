@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		86F37446269D1A9A2213D699 /* Pods_EdL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFE9DA98DD5CC5C6D5748B /* Pods_EdL.framework */; };
+		8A066F371D3BC33D00AEC803 /* SubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A066F361D3BC33D00AEC803 /* SubmitViewController.swift */; };
 		8A1609341D15A07B0081D0AF /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1609331D15A07B0081D0AF /* QuestionController.swift */; };
 		8A1609361D15AEE30081D0AF /* Questions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A1609351D15AEE30081D0AF /* Questions.storyboard */; };
 		8A1609381D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1609371D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift */; };
@@ -19,7 +20,7 @@
 		8A80C5291D16FFA200D42FFC /* ChoiceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C5281D16FFA200D42FFC /* ChoiceDTO.swift */; };
 		8A80C52B1D17007E00D42FFC /* AnswersDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C52A1D17007E00D42FFC /* AnswersDTO.swift */; };
 		8A80C52D1D17014B00D42FFC /* TextAnswerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C52C1D17014B00D42FFC /* TextAnswerDTO.swift */; };
-		8A80C52F1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */; };
+		8A80C52F1D17022700D42FFC /* MultipleChoiceAnswerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C52E1D17022700D42FFC /* MultipleChoiceAnswerDTO.swift */; };
 		8A80C5311D172D0000D42FFC /* TextQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */; };
 		8A95E6DF1D29414700D6F83F /* QuestionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */; };
 		8AC2ADEB1D317D7C004F4B7F /* StudyPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2ADEA1D317D7C004F4B7F /* StudyPathViewController.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		33AEC29CB8E434DAEA7715B5 /* Pods-EdL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EdL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EdL/Pods-EdL.debug.xcconfig"; sourceTree = "<group>"; };
+		8A066F361D3BC33D00AEC803 /* SubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitViewController.swift; sourceTree = "<group>"; };
 		8A1609331D15A07B0081D0AF /* QuestionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
 		8A1609351D15AEE30081D0AF /* Questions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Questions.storyboard; sourceTree = "<group>"; };
 		8A1609371D15CDD60081D0AF /* MultipleChoiceQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +47,7 @@
 		8A80C5281D16FFA200D42FFC /* ChoiceDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceDTO.swift; sourceTree = "<group>"; };
 		8A80C52A1D17007E00D42FFC /* AnswersDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersDTO.swift; sourceTree = "<group>"; };
 		8A80C52C1D17014B00D42FFC /* TextAnswerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnswerDTO.swift; sourceTree = "<group>"; };
-		8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleCoiceAnswerDTO.swift; sourceTree = "<group>"; };
+		8A80C52E1D17022700D42FFC /* MultipleChoiceAnswerDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceAnswerDTO.swift; sourceTree = "<group>"; };
 		8A80C5301D172D0000D42FFC /* TextQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextQuestionViewController.swift; sourceTree = "<group>"; };
 		8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPageViewController.swift; sourceTree = "<group>"; };
 		8AC2ADEA1D317D7C004F4B7F /* StudyPathViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyPathViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 				8A80C5281D16FFA200D42FFC /* ChoiceDTO.swift */,
 				8A80C52A1D17007E00D42FFC /* AnswersDTO.swift */,
 				8A80C52C1D17014B00D42FFC /* TextAnswerDTO.swift */,
-				8A80C52E1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift */,
+				8A80C52E1D17022700D42FFC /* MultipleChoiceAnswerDTO.swift */,
 			);
 			name = DTOs;
 			sourceTree = "<group>";
@@ -149,6 +151,7 @@
 				8A95E6DE1D29414700D6F83F /* QuestionPageViewController.swift */,
 				8AC2ADEA1D317D7C004F4B7F /* StudyPathViewController.swift */,
 				8AC2ADEC1D317D8E004F4B7F /* CompletionViewController.swift */,
+				8A066F361D3BC33D00AEC803 /* SubmitViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -292,7 +295,7 @@
 				8A179B741D18715D001E5F23 /* Colors.swift in Sources */,
 				8A80C52B1D17007E00D42FFC /* AnswersDTO.swift in Sources */,
 				8A80C5271D16FF2F00D42FFC /* MultipleChoiceQuestionDTO.swift in Sources */,
-				8A80C52F1D17022700D42FFC /* MultipleCoiceAnswerDTO.swift in Sources */,
+				8A80C52F1D17022700D42FFC /* MultipleChoiceAnswerDTO.swift in Sources */,
 				8A80C52D1D17014B00D42FFC /* TextAnswerDTO.swift in Sources */,
 				8A80C5251D16FD9E00D42FFC /* TextQuestionDTO.swift in Sources */,
 				8A74D20D1D18804800E2D380 /* QRCodeViewController.swift in Sources */,
@@ -304,6 +307,7 @@
 				8AFF40131D17E1CE005E3BA5 /* Helper.swift in Sources */,
 				8A80C5311D172D0000D42FFC /* TextQuestionViewController.swift in Sources */,
 				8A80C5231D16FCB100D42FFC /* QuestionsDTO.swift in Sources */,
+				8A066F371D3BC33D00AEC803 /* SubmitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

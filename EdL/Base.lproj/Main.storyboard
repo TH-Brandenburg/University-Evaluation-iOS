@@ -53,11 +53,55 @@
                     <connections>
                         <outlet property="pageViewControllerContainer" destination="7GT-q4-ZrQ" id="62v-gY-eEB"/>
                         <outlet property="pickerView" destination="WsK-48-nOK" id="iqY-jl-fWc"/>
+                        <segue destination="QJx-Dr-tBh" kind="show" identifier="submit" id="BBf-UL-85l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3h-pU-vEd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1364" y="518"/>
+        </scene>
+        <!--Absenden-->
+        <scene sceneID="5fd-fb-THI">
+            <objects>
+                <viewController title="Absenden" id="QJx-Dr-tBh" customClass="SubmitViewController" customModule="EdL" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1rW-mJ-R2x"/>
+                        <viewControllerLayoutGuide type="bottom" id="zOk-eP-9hr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vqR-6t-std">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mse-n8-U2E">
+                                <rect key="frame" x="270" y="270" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="dlf-hw-x7w"/>
+                                    <constraint firstAttribute="width" constant="60" id="frp-yg-VaA"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✓ Erfolgreich abgesendet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGe-ef-aWV">
+                                <rect key="frame" x="129" y="281.5" width="343.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.72914459745762716" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mse-n8-U2E" firstAttribute="centerY" secondItem="vqR-6t-std" secondAttribute="centerY" id="AuQ-rG-hJ0"/>
+                            <constraint firstItem="IGe-ef-aWV" firstAttribute="centerX" secondItem="vqR-6t-std" secondAttribute="centerX" id="HPi-E2-jaX"/>
+                            <constraint firstItem="IGe-ef-aWV" firstAttribute="centerY" secondItem="vqR-6t-std" secondAttribute="centerY" id="YSG-fn-Lls"/>
+                            <constraint firstItem="mse-n8-U2E" firstAttribute="centerX" secondItem="vqR-6t-std" secondAttribute="centerX" id="uqk-pS-pPm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="mse-n8-U2E" id="rJt-4e-eQb"/>
+                        <outlet property="successLabel" destination="IGe-ef-aWV" id="2p9-9W-x6w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r4z-j9-sSF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1364" y="1216"/>
         </scene>
         <!--QR-Code scannen-->
         <scene sceneID="sI3-JT-tMW">
