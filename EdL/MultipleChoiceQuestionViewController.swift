@@ -29,7 +29,14 @@ class MultipleChoiceQuestionViewController: UIViewController {
             } else {
                 button.selected = false
                 if let btnIndex = buttons.indexOf(button){
-                    button.layer.backgroundColor = Colors.gradesLight[abs(questionDTO.choices[btnIndex].grade)].CGColor
+                    if questionDTO.choices[btnIndex].grade != 0 {
+                        button.layer.backgroundColor = Colors.gradesLight[abs(questionDTO.choices[btnIndex].grade)].CGColor
+                    } else {
+                        button.layer.borderWidth = 1
+                        button.layer.borderColor = Colors.gradesLight[abs(questionDTO.choices[btnIndex].grade)].CGColor
+                        button.layer.backgroundColor = UIColor.whiteColor().CGColor
+                    }
+                    
                 }
                 if button == sender{
                     answerDTO.choice = nil
@@ -53,7 +60,13 @@ class MultipleChoiceQuestionViewController: UIViewController {
             if let button = self.view.viewWithTag(20 + i) as? UIButton{
                 button.setTitle(questionDTO.choices[i].choiceText, forState: .Normal)
                 button.layer.cornerRadius = 5
-                button.layer.backgroundColor = Colors.gradesLight[abs(questionDTO.choices[i].grade)].CGColor
+                if questionDTO.choices[i].grade != 0 {
+                    button.layer.backgroundColor = Colors.gradesLight[abs(questionDTO.choices[i].grade)].CGColor
+                } else {
+                    button.layer.borderWidth = 1
+                    button.layer.borderColor = Colors.gradesLight[abs(questionDTO.choices[i].grade)].CGColor
+                }
+                
                 buttons.append(button)
             }
         }

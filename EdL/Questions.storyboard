@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="10" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfY-Ip-nzu">
-                                <rect key="frame" x="20" y="28" width="560" height="257"/>
+                                <rect key="frame" x="20" y="28" width="560" height="249"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3qo-gd-IB6">
-                                <rect key="frame" x="150" y="285" width="300" height="295"/>
+                                <rect key="frame" x="150" y="277" width="300" height="303"/>
                                 <subviews>
                                     <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMQ-mY-RcX">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
@@ -102,8 +102,15 @@
                                             <action selector="selectAnswer:" destination="9he-Ta-im8" eventType="touchUpInside" id="MAi-Yz-Z0N"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Bm-PQ-3qy">
+                                        <rect key="frame" x="0.0" y="250" width="300" height="3"/>
+                                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="3" id="LHU-sq-NyP"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HmQ-0u-mYg">
-                                        <rect key="frame" x="0.0" y="250" width="300" height="45"/>
+                                        <rect key="frame" x="0.0" y="258" width="300" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="rqb-Ac-9fN"/>
                                         </constraints>
