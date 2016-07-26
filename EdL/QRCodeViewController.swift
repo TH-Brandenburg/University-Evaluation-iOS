@@ -191,6 +191,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        // Remove data of previous evaluations
+        Helper.deleteAll()
+        
         cameraAllowsAccessToApplicationCheck()
     }
     
