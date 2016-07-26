@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -178,23 +178,54 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3Q-3A-F4Q">
-                                <rect key="frame" x="20" y="186" width="560" height="394"/>
+                                <rect key="frame" x="20" y="344" width="560" height="236"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xzJ-dy-14o">
+                                <rect key="frame" x="20" y="186" width="182" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVr-dg-huM">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="NOR-j0-QM9"/>
+                                            <constraint firstAttribute="height" constant="150" id="nI5-5d-ruK"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="showPhoto:" destination="5bZ-YZ-YAI" eventType="touchUpInside" id="XcM-S0-a7Z"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-jV-gmY">
+                                        <rect key="frame" x="158" y="0.0" width="24" height="150"/>
+                                        <state key="normal" image="ic_delete"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WNP-hi-amd" firstAttribute="top" secondItem="Q3Q-3A-F4Q" secondAttribute="bottom" constant="20" id="2wz-05-qby"/>
                             <constraint firstItem="Q3Q-3A-F4Q" firstAttribute="top" secondItem="pMO-ob-m7y" secondAttribute="bottom" constant="8" symbolic="YES" id="67F-X8-h2B"/>
                             <constraint firstItem="Q3Q-3A-F4Q" firstAttribute="trailing" secondItem="mN6-17-F2d" secondAttribute="trailing" constant="-20" id="6Qe-qc-9gB"/>
+                            <constraint firstItem="xzJ-dy-14o" firstAttribute="leading" secondItem="mN6-17-F2d" secondAttribute="leading" constant="20" id="Acg-Ed-6tA"/>
                             <constraint firstItem="pMO-ob-m7y" firstAttribute="top" secondItem="HpV-bb-EKF" secondAttribute="bottom" constant="8" id="JbB-0n-ide"/>
                             <constraint firstItem="pMO-ob-m7y" firstAttribute="trailing" secondItem="mN6-17-F2d" secondAttribute="trailing" constant="-20" id="LRw-B6-tX3"/>
                             <constraint firstItem="Q3Q-3A-F4Q" firstAttribute="leading" secondItem="mN6-17-F2d" secondAttribute="leading" constant="20" id="e4P-0Y-mEg"/>
+                            <constraint firstItem="xzJ-dy-14o" firstAttribute="top" secondItem="pMO-ob-m7y" secondAttribute="bottom" constant="8" id="gCZ-3p-Bqm"/>
+                            <constraint firstItem="Q3Q-3A-F4Q" firstAttribute="top" secondItem="xzJ-dy-14o" secondAttribute="bottom" constant="8" id="uSh-c5-bse"/>
                             <constraint firstItem="pMO-ob-m7y" firstAttribute="leading" secondItem="mN6-17-F2d" secondAttribute="leading" constant="20" id="uVc-zl-Ajt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="67F-X8-h2B"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="imageButton" destination="QVr-dg-huM" id="7aZ-jq-VAB"/>
+                        <outlet property="imageStackView" destination="xzJ-dy-14o" id="Wi7-9g-PhH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIa-5W-HXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -289,4 +320,7 @@
             <point key="canvasLocation" x="2537" y="363"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_delete" width="24" height="24"/>
+    </resources>
 </document>

@@ -88,6 +88,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework"
   install_framework "$BUILT_PRODUCTS_DIR/EVReflection/EVReflection.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ImageViewer/ImageViewer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SSZipArchive/SSZipArchive.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
@@ -96,6 +97,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework"
   install_framework "$BUILT_PRODUCTS_DIR/EVReflection/EVReflection.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ImageViewer/ImageViewer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SSZipArchive/SSZipArchive.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi

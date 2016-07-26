@@ -12,4 +12,5 @@ target 'EdL' do
   pod 'AKPickerView-Swift', '~> 1.0'
   pod 'EVReflection', '~> 2.38'
   pod 'SSZipArchive', '~> 1.3'
+  pod 'ImageViewer', :git => 'https://github.com/MailOnline/ImageViewer.git', :tag => '2.0.6'
 end
