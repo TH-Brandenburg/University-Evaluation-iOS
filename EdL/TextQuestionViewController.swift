@@ -20,6 +20,21 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
     
     var imagePicker: UIImagePickerController!
     
+    var subscribedToKeyboardNotifications = false {
+        willSet(newValue) {
+            if newValue && !subscribedToKeyboardNotifications {
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TextQuestionViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TextQuestionViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+            } else if !newValue && subscribedToKeyboardNotifications {
+                NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+                NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+            }
+        }
+    }
+    
+    let bottomNavigationHeight = 50
+    
+    @IBOutlet weak var answerTextView: UITextView!
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var imageStackView: UIStackView!
     
@@ -75,6 +90,8 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
     
     override func viewWillAppear(animated: Bool) {
         
+        subscribedToKeyboardNotifications = true //refer to setter
+        
         //Question Text
         if let questionTextView = self.view.viewWithTag(10) as? UITextView{
             questionTextView.text = questionDTO.questionText
@@ -110,9 +127,13 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
         if ((parentViewController?.parentViewController?.navigationItem) != nil){
             parentViewController!.parentViewController!.navigationItem.rightBarButtonItem = nil
         }
+        
+        subscribedToKeyboardNotifications = false //refer to setter
+        
+
     }
     
-    // MARK: - Test View Delegate
+    // MARK: - Text View Delegate
     
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.text == "Antwort eingeben..." {
@@ -195,6 +216,31 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
     func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
         //not implemented, but required by ImageProvider protocol
         completion(nil)
+    }
+    
+    // MARK: - Keyboard related behavior
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y -= (keyboardSize.height - CGFloat(self.bottomNavigationHeight))
+        }
+        for view in self.parentViewController!.view.subviews {
+            if let subView = view as? UIScrollView {
+                subView.scrollEnabled = false
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += (keyboardSize.height - CGFloat(self.bottomNavigationHeight))
+        }
+        for view in self.parentViewController!.view.subviews {
+            if let subView = view as? UIScrollView {
+                subView.scrollEnabled = true
+            }
+        }
     }
     
 

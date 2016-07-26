@@ -226,6 +226,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="answerTextView" destination="Q3Q-3A-F4Q" id="fYA-tk-UcA"/>
                         <outlet property="imageButton" destination="QVr-dg-huM" id="7aZ-jq-VAB"/>
                         <outlet property="imageStackView" destination="xzJ-dy-14o" id="Wi7-9g-PhH"/>
                     </connections>
