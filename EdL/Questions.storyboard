@@ -184,7 +184,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xzJ-dy-14o">
-                                <rect key="frame" x="20" y="186" width="182" height="150"/>
+                                <rect key="frame" x="20" y="186" width="168" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVr-dg-huM">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -197,7 +197,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-jV-gmY">
-                                        <rect key="frame" x="158" y="0.0" width="24" height="150"/>
+                                        <rect key="frame" x="158" y="0.0" width="10" height="150"/>
                                         <state key="normal" image="ic_delete"/>
                                     </button>
                                 </subviews>

@@ -16,13 +16,14 @@ class SubmitViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var successLabel: UILabel!
+    @IBOutlet weak var qrcodeButton: UIButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-
-        // Do any additional setup after loading the view.
+        
+        qrcodeButton.layer.backgroundColor = Colors.blue.CGColor
     }
     
     override func viewDidAppear(animated: Bool) {

@@ -64,6 +64,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.hidesBackButton = true
+        
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
