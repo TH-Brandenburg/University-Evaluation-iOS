@@ -199,6 +199,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-jV-gmY">
                                         <rect key="frame" x="158" y="0.0" width="10" height="150"/>
                                         <state key="normal" image="ic_delete"/>
+                                        <connections>
+                                            <action selector="deletePhoto:" destination="5bZ-YZ-YAI" eventType="touchUpInside" id="fzY-Ak-rwr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

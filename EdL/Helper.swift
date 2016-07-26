@@ -94,12 +94,7 @@ class Helper {
         if let directoryContents = try? fileMgr.contentsOfDirectoryAtPath(dirPath) {
             for path in directoryContents {
                 let fullPath = (dirPath as NSString).stringByAppendingPathComponent(path)
-                try? fileMgr.removeItemAtPath(fullPath)
-            }
-        }
-        if let directoryContents = try? fileMgr.contentsOfDirectoryAtPath(dirPath) {
-            for path in directoryContents {
-                print("Not deleted: \(path)")
+                _ = try? fileMgr.removeItemAtPath(fullPath)
             }
         }
     }

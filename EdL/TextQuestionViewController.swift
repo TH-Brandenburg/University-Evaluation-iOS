@@ -44,6 +44,23 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
         
     }
     
+    @IBAction func deletePhoto(sender: UIButton) {
+        let fileMgr = NSFileManager()
+        
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let dataPath = documentsPath.stringByAppendingPathComponent("images")
+        let imagePath = "\(dataPath)/\(answerDTO.questionID).jpg"
+        let thumbnailsPath = documentsPath.stringByAppendingPathComponent("thumbnails")
+        let thumbnailPath = "\(thumbnailsPath)/\(answerDTO.questionID).jpg"
+
+        _ = try? fileMgr.removeItemAtPath(imagePath)
+        _ = try? fileMgr.removeItemAtPath(thumbnailPath)
+        
+        self.imageButton.setImage(nil, forState: .Normal)
+        loadPhoto()
+
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
