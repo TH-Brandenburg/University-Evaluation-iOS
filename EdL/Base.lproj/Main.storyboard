@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7GT-q4-ZrQ">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7GT-q4-ZrQ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="486"/>
                                 <connections>
                                     <segue destination="7ix-Ap-hEI" kind="embed" identifier="embedQuestionPageViewController" id="A6N-Ic-eYz"/>
@@ -36,7 +36,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.75686274509803919" green="0.10980392156862745" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="WsK-48-nOK" secondAttribute="trailing" constant="-20" id="9gw-1I-gN2"/>
                             <constraint firstItem="7GT-q4-ZrQ" firstAttribute="top" secondItem="I7W-xW-C47" secondAttribute="bottom" id="BYh-v4-crs"/>

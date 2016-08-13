@@ -33,6 +33,8 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
     }
     
     let bottomNavigationHeight = 50
+    var textFieldOffsetWithoutNavigationBar = 0
+    var textFieldOffset = false;
     
     @IBOutlet weak var answerTextView: UITextView!
     @IBOutlet weak var imageButton: UIButton!
@@ -221,8 +223,15 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
     // MARK: - Keyboard related behavior
     
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y -= (keyboardSize.height - CGFloat(self.bottomNavigationHeight))
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
+            if textFieldOffset{
+                self.view.frame.origin.y -= keyboardSize.height - CGFloat(self.textFieldOffsetWithoutNavigationBar)
+            } else {
+                self.view.frame.origin.y -= keyboardSize.height - CGFloat(self.bottomNavigationHeight) - CGFloat(self.textFieldOffsetWithoutNavigationBar)
+            }
+            
+            self.textFieldOffsetWithoutNavigationBar = Int(keyboardSize.height)
+            self.textFieldOffset = true
         }
         for view in self.parentViewController!.view.subviews {
             if let subView = view as? UIScrollView {
@@ -233,8 +242,19 @@ class TextQuestionViewController: UIViewController, UITextViewDelegate, UIPicker
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y += (keyboardSize.height - CGFloat(self.bottomNavigationHeight))
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
+            
+            if textFieldOffset{
+                if keyboardSize.height == CGFloat(self.textFieldOffsetWithoutNavigationBar){
+                    self.view.frame.origin.y += keyboardSize.height - CGFloat(self.bottomNavigationHeight)
+                    self.textFieldOffsetWithoutNavigationBar = 0
+                    textFieldOffset = false
+                } else {
+                    self.view.frame.origin.y += CGFloat(self.textFieldOffsetWithoutNavigationBar) - keyboardSize.height
+                    self.textFieldOffsetWithoutNavigationBar = Int(keyboardSize.height)
+                }
+            }
+            
         }
         for view in self.parentViewController!.view.subviews {
             if let subView = view as? UIScrollView {
