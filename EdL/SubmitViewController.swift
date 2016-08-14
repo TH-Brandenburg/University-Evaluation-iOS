@@ -57,6 +57,7 @@ class SubmitViewController: UIViewController {
                                     upload.responseJSON { response in
                                         debugPrint(response)
                                     }
+                                    Helper.deleteAll()
                                     self.successLabel?.hidden = false
                                     self.activityIndicator?.stopAnimating()
                                 case .Failure(let encodingError):
