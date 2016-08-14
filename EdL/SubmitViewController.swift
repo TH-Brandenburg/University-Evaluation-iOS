@@ -16,7 +16,9 @@ class SubmitViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var successLabel: UILabel!
+    @IBOutlet weak var failureLabel: UILabel!
     @IBOutlet weak var qrcodeButton: UIButton!
+    @IBOutlet weak var retryButton: UIButton!
     
 
     override func viewDidLoad() {
@@ -24,6 +26,9 @@ class SubmitViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         
         qrcodeButton.layer.backgroundColor = Colors.blue.CGColor
+        qrcodeButton.layer.cornerRadius = 5
+        retryButton.layer.backgroundColor = Colors.blue.CGColor
+        retryButton.layer.cornerRadius = 5
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -34,8 +39,13 @@ class SubmitViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func retry(sender: UIButton) {
+        submit()
+    }
     
     func submit(){
+        self.retryButton.hidden = true
+        
         print("Answers:\n\(answersDTO.toJsonString())")
         let answers = answersDTO.toJsonString()
         
@@ -55,13 +65,25 @@ class SubmitViewController: UIViewController {
                                 switch encodingResult {
                                 case .Success(let upload, _, _):
                                     upload.responseJSON { response in
+                                        switch response.result {
+                                        case .Success:
+                                            Helper.deleteAll()
+                                            self.failureLabel.hidden = true
+                                            self.successLabel.hidden = false
+                                        case .Failure(let error):
+                                            print(error)
+                                            self.retryButton.hidden = false
+                                            self.failureLabel.hidden = false
+                                            self.successLabel.hidden = true
+                                        }
                                         debugPrint(response)
+                                        self.activityIndicator?.stopAnimating()
                                     }
-                                    Helper.deleteAll()
-                                    self.successLabel?.hidden = false
-                                    self.activityIndicator?.stopAnimating()
-                                case .Failure(let encodingError):
+                                                                    case .Failure(let encodingError):
                                     print(encodingError)
+                                    self.retryButton.hidden = false
+                                    self.failureLabel.hidden = false
+                                    self.successLabel.hidden = true
                                 }
                 }
             )
